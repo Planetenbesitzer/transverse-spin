@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+
+\title{Transverse Spin Calculations}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+
+This note includes some notes about spinor helicity amplitude. The current version focuses on organizing reference materials, and mathematical details may be added later.
+
+The main structure of this note is as follows:
+
+\begin{enumerate}
+    \item Spinor convention: This section discusses the helicity basis in spinor eigenfunction solutions and the decomposition of other spin bases.
+    \item Factorization proofs: Beyond naive non-polarized factorization, there are also factorization proofs with polarization. There are some excellent references here, and we can fill in the details ourselves later.
+    \item \ldots
+\end{enumerate}
+
+\section{Spinor Convention}
+
+For a free spinor field, we should first know its equation of motion. Then we write down the covariant Lorentz generators of the spinor field and extract the angular momentum operator from them. The angular momentum operator can define the helicity basis and spin bases in other directions, and help us understand how the density matrix of the state is obtained.
+
+\begin{enumerate}
+    \item The derivation of the equation of motion and Lorentz generators can be found in Peskin's section 3.2--3.3.
+    
+    \item The projection operators for spin can project out:
+    \begin{itemize}
+        \item helicity basis
+        \item transverse spin basis
+        \item longitudinal spin basis
+    \end{itemize}
+    This allows us to perform Dirac matrix computation tricks without explicitly writing out the expression for $u_s$. See Peskin's section 5.2. This language itself is very useful, but numerical calculations often use explicit $u_s$ expressions, so we also need to know the explicit expressions for $u_s$, which can be found in Peskin's Appendix A.2.
+    
+    \item There is a more detailed discussion of projection operators, which I found very instructive. See the review \href{https://arxiv.org/abs/hep-ph/0104283}{Barone--Drago--Ratcliffe, hep-ph/0104283} section 2.
+    
+    \item The last reference about spinor is a very impressive doctoral thesis from a senior colleague. See \href{http://arxiv.org/abs/2308.13080}{Zhite Yu PhD thesis, 2308.13080} section 8, most importantly section 8.1.
+\end{enumerate}
+
+Although I have listed many references in order, their importance is not uniform. I believe the importance ranking is as follows:
+
+Zhite thesis section 8.1 $>$ review section 2 $>$ Peskin Appendix A.2 $>$ others
+
+After reading the first three, you should have a preliminary understanding of spinor spin. However, to fully understand it, you need to combine it with ChatGPT, and reading Weinberg's construction of particle representations is also highly recommended. The relevant field theory knowledge cannot be covered in just a few chapters, so you can gradually fill in the gaps and learn recursively. Good luck!
+
+\section{Factorization Proofs}
+
+Due to time constraints, I first write down simple proof references. I will look at this in detail later when I have time, because the school gate is about to close soon.
+
+\begin{enumerate}
+    \item \href{http://arxiv.org/abs/2308.13080}{Zhite Yu PhD thesis, 2308.13080} section 2.4
+    
+    \item \href{http://arxiv.org/abs/2308.13080}{Zhite Yu PhD thesis, 2308.13080} section 2.6, with emphasis on 2.6.3
+    
+    \item \href{http://arxiv.org/abs/2308.13080}{Zhite Yu PhD thesis, 2308.13080} section 2.7, with emphasis on 2.7.1
+    
+    \item \href{http://arxiv.org/abs/2308.13080}{Zhite Yu PhD thesis, 2308.13080} section 3, which is supplementary material. You can choose to read it, it is quite long.
+    
+    \item \href{https://arxiv.org/abs/hep-ph/0104283}{Barone--Drago--Ratcliffe, hep-ph/0104283} section 6, and recursively review sections 3, 4, and 6.
+    
+    \item This should be at the very beginning: ChatGPT can directly provide factorization for SIDIS and pp collisions with transverse polarization, and have it explain the logic.
+\end{enumerate}
+
+This section is written roughly without specific details about which location. I really ran out of time. But you can first read the first part. Good luck! Wish us good fortune! 
+
+\end{document}
