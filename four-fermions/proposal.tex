@@ -1,0 +1,326 @@
+\documentclass[UTF8,a4paper,zihao=-4,fontset=fandol]{ctexart}
+
+\usepackage[left=18mm,right=18mm,top=17mm,bottom=18mm]{geometry}
+\usepackage{amsmath,amssymb,bm,mathtools}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.pathmorphing,positioning,shapes.geometric}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,linkcolor=DeepBlue,citecolor=DeepBlue,urlcolor=DeepBlue]{hyperref}
+
+\definecolor{DeepBlue}{HTML}{163A5F}
+\definecolor{SkyBlue}{HTML}{5B8FF9}
+\definecolor{WarmRed}{HTML}{D8583B}
+\definecolor{Amber}{HTML}{E7A23B}
+\definecolor{Teal}{HTML}{238B8D}
+\definecolor{Leaf}{HTML}{5D9C59}
+\definecolor{Ink}{HTML}{202832}
+\definecolor{SoftGray}{HTML}{F3F5F7}
+
+\hypersetup{
+  pdftitle={以双强子碎裂探测手征翻转：EIC 四费米算符与 LHC 奇异 Yukawa 耦合},
+  pdfsubject={研究计划书},
+  pdfkeywords={transverse spin, dihadron fragmentation, EIC, Higgs, strange Yukawa}
+}
+
+\ctexset{
+  section={format=\Large\bfseries\color{DeepBlue},beforeskip=1.25ex,afterskip=.55ex},
+  subsection={format=\large\bfseries\color{Ink},beforeskip=1.0ex,afterskip=.35ex}
+}
+\captionsetup{font=small,labelfont={bf,color=DeepBlue},labelsep=quad}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{.15em}
+\setlength{\headheight}{24pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{DeepBlue}横自旋碎裂探针研究计划}
+\fancyhead[R]{\small\color{DeepBlue}\thepage}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{SkyBlue}\leaders\hrule height \headrulewidth\hfill}}
+
+\newcommand{\HT}{H_{1}^{\sphericalangle}}
+\newcommand{\dd}{\mathrm d}
+
+\begin{document}
+
+\begin{center}
+  {\fontsize{20}{26}\selectfont\bfseries\color{DeepBlue}
+  以双强子碎裂探测手征翻转}\par
+  \vspace{2pt}
+  {\fontsize{15}{21}\selectfont\bfseries\color{Ink}
+  EIC 四费米算符与 LHC 奇异 Yukawa 耦合}\par
+  \vspace{5pt}
+  {\large 研究计划书}\hfill{\color{DeepBlue}2026 年 9 月}
+\end{center}
+
+\vspace{2pt}
+\noindent\begin{tikzpicture}
+  \node[rounded corners=3pt,fill=SoftGray,draw=SkyBlue!45,inner sep=9pt,
+        text width=.93\linewidth,align=left] {
+  \textbf{研究目标。}用末态双强子碎裂函数（DiFF）读取 quark transverse spin，恢复
+  Standard Model（SM）与手征翻转相互作用的线性干涉。第一项把双横极化 \(ep\) DIS
+  改为仅电子横极化的半包容过程，探测 scalar/tensor 四费米算符；第二项把轻子对撞机上的
+  Yukawa--DiFF 思路推广到 \(pp\to ZH,\ H\to s\bar s\)，研究 strange Yukawa。
+  前者可采用已有 \(\pi^+\pi^-\) DiFF，后者需要建立对 \(s\) 有分析能力的含 kaon 双强子道。};
+\end{tikzpicture}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  every node/.style={font=\scriptsize,inner sep=1.5pt},
+  beam/.style={-{Latex[length=2.2mm]},line width=1.0pt,color=Ink},
+  fermion/.style={-{Latex[length=2.1mm]},line width=1.15pt,color=DeepBlue},
+  hadron/.style={-{Latex[length=2.1mm]},line width=1.15pt,color=WarmRed},
+  spin/.style={-{Latex[length=2.2mm]},line width=1.3pt,color=Teal},
+  boson/.style={decorate,decoration={snake,amplitude=1.0pt,segment length=4.5pt},
+                -{Latex[length=2mm]},line width=.95pt,color=DeepBlue}
+]
+  % Panel (a): EIC DiFF
+  \begin{scope}[shift={(0,0)}]
+    \node[anchor=north west,font=\small\bfseries\color{DeepBlue}] at (-.10,4.80)
+      {(a) \(e_T^-p\) 与末态 DiFF};
+    \path[fill=SkyBlue!13,draw=SkyBlue!60,line width=.55pt]
+      (.20,1.00)--(5.55,.55)--(6.15,3.30)--(.85,3.78)--cycle;
+    \path[fill=Amber!15,draw=Amber!75,line width=.55pt]
+      (3.00,2.10)--(6.55,3.62)--(6.55,.62)--(3.00,1.78)--cycle;
+    \node[color=SkyBlue!85!DeepBlue,rotate=-5] at (1.20,1.10) {lepton plane};
+    \node[color=WarmRed,rotate=19] at (5.80,3.78) {dihadron plane};
+    \draw[fermion] (.10,2.82)--(2.75,2.12);
+    \draw[fermion] (2.75,2.12)--(5.25,3.20);
+    \draw[beam] (.10,.72)--(2.75,2.12);
+    \node[anchor=east] at (.08,2.82) {\(e^-\)};
+    \node[anchor=east] at (.08,.72) {\(p\;({\rm unpol.})\)};
+    \node[anchor=south] at (4.85,3.13) {\(e^-\)};
+    \draw[spin] (.72,2.61)--(.68,3.44);
+    \node[color=Teal,anchor=south] at (.68,3.44) {\(\bm S_{eT}\)};
+    \node[star,star points=12,star point ratio=.68,fill=Amber!90,
+          draw=WarmRed,line width=.65pt,minimum size=6mm] (hardA) at (2.75,2.12) {};
+    \node[align=center,anchor=south] at (2.77,2.48)
+      {\(\gamma^*/Z\;\times\;\mathcal O_i\)\\[-1pt] interference};
+    \draw[hadron] (hardA)--(5.10,1.55) node[pos=.55,below] {\(q_T\)};
+    \path[fill=Amber!22,draw=WarmRed!70] (4.68,1.44)--(6.08,2.22)--(6.34,.88)--cycle;
+    \draw[hadron] (5.05,1.55)--(6.28,2.18) node[anchor=south west] {\(h_1\)};
+    \draw[hadron] (5.05,1.55)--(6.35,.92) node[anchor=north west] {\(h_2\)};
+    \draw[spin] (4.24,1.72)--(4.18,2.48);
+    \node[color=Teal,anchor=east] at (4.08,2.28) {\(\bm s_{T,q}\)};
+    \draw[-{Latex[length=1.8mm]},color=WarmRed,line width=1pt]
+      (5.06,1.55)--(5.76,1.97) node[midway,above] {\(\bm R_T\)};
+    \draw[color=WarmRed,-{Latex[length=1.5mm]}]
+      (5.47,1.53) arc[start angle=0,end angle=32,radius=.42];
+    \node[color=WarmRed] at (5.96,1.55) {\(\phi_R\)};
+  \end{scope}
+
+  % Panel (b): a strange-sensitive DiFF and an opposite-jet flavor tag.
+  \begin{scope}[shift={(8.10,0)}]
+    \node[anchor=north west,font=\small\bfseries\color{DeepBlue}] at (-.10,4.80)
+      {(b) \(pp\to ZH,\ H\to s\bar s\) 与末态 DiFF};
+    \path[fill=SkyBlue!10,draw=SkyBlue!50,line width=.55pt]
+      (.65,1.38)--(1.90,4.12)--(6.25,1.02)--(4.60,.55)--cycle;
+    \node[color=SkyBlue!85!DeepBlue,rotate=-31] at (3.57,3.98) {\(Z\)--jet plane};
+    \path[fill=Amber!20,draw=Amber!80,line width=.65pt]
+      (4.07,2.28)--(6.74,4.03)--(6.86,2.19)--cycle;
+    \node[color=WarmRed,rotate=24] at (5.66,3.91) {dihadron plane};
+    \draw[beam] (.02,1.05)--(2.48,2.13);
+    \draw[beam] (.13,3.15)--(2.48,2.13);
+    \node[ellipse,draw=DeepBlue,fill=SkyBlue!10,minimum width=6mm] at (.13,1.10) {\(p_A\)};
+    \node[ellipse,draw=DeepBlue,fill=SkyBlue!10,minimum width=6mm] at (.24,3.10) {\(p_B\)};
+    \node[circle,draw=DeepBlue,fill=SkyBlue!18,minimum size=7mm,line width=.8pt] (hardB) at (2.48,2.13) {\(\rho\)};
+    \draw[boson] (hardB)--(1.82,3.44) node[pos=.50,left] {\(Z\)};
+    \draw[fermion] (1.82,3.44)--(1.16,4.06) node[anchor=south east] {\(\ell^-\)};
+    \draw[fermion] (1.82,3.44)--(2.44,4.06) node[anchor=south west] {\(\ell^+\)};
+    \draw[hadron] (hardB)--(4.85,2.77) node[pos=.48,below] {\(s_T\)};
+    \draw[hadron] (4.64,2.71)--(6.54,3.62) node[anchor=west] {\(K^-\)};
+    \draw[hadron] (4.64,2.71)--(6.65,2.37) node[anchor=west] {\(\pi^+\)};
+    \draw[dashed,color=WarmRed!70,line width=.7pt] (4.64,2.71)--(6.58,3.03);
+    \draw[spin] (3.89,2.51)--(3.71,3.28);
+    \node[color=Teal,anchor=south] at (3.71,3.28) {\(\bm s_{T,s}\)};
+    \draw[-{Latex[length=1.8mm]},color=WarmRed,line width=1pt]
+      (5.18,2.80)--(5.72,3.34) node[pos=.65,left] {\(\bm R_T\)};
+    \draw[color=WarmRed,-{Latex[length=1.5mm]}]
+      (5.61,2.87) arc[start angle=10,end angle=44,radius=.43];
+    \node[color=WarmRed] at (6.08,3.15) {\(\phi_R\)};
+    \draw[hadron] (hardB)--(4.40,1.17) node[pos=.58,below] {\(\bar s\)};
+    \path[fill=Leaf!13,draw=Leaf!65] (4.12,1.29)--(6.45,1.19)--(6.11,.43)--cycle;
+    \draw[fermion,color=Leaf!60!black] (4.40,1.17)--(6.25,.75)
+      node[anchor=west,color=Leaf!45!black] {\(h'=K^+\)};
+    \node[color=Leaf!45!black] at (5.25,.47) {flavor tag};
+    \node[rounded corners=2pt,fill=SoftGray,draw=SkyBlue!45,align=center]
+      at (2.10,.40) {\(\rho_{\rm int}:\ \mathcal M_{ZH}\mathcal M_{\rm cont}^{*}+{\rm h.c.}\)};
+  \end{scope}
+\end{tikzpicture}
+\caption{事件几何与自旋测量链。左：仅电子横极化的 EIC 过程，双强子面取代初态 proton
+transversity。右：\(ZH\) 与 \(Zs\bar s\) continuum 干涉产生单 quark 横自旋；同一 jet 内的
+\(K^-\pi^+\) 是待标定的 DiFF 分析道，另一 jet 内的 \(K^+\) 提供统计 flavor tag。
+图中仅画出一种碎裂指派，计算须包含 quark/antiquark 互换及电荷共轭道。}
+\label{fig:proposal}
+\end{figure}
+
+\section{物理出发点}
+
+Scalar/tensor 四费米算符与 Yukawa vertex 翻转手征性；对 helicity 求和的非极化率可能丢失
+它们与 SM gauge amplitude 的线性干涉。DiFF 不要求逐个测量 quark spin，而用
+\(R=(p_1-p_2)/2\) 的横向分量及其方位角 \(\phi_R\) 读取 helicity coherence：
+\begin{equation}
+ \mathcal F_q(\phi_R)=D_q^{h_1h_2}(z,M_h)
+ -\bigl(s_{x,q}\sin\phi_R-s_{y,q}\cos\phi_R\bigr)H_q^{h_1h_2}(z,M_h).
+ \label{eq:analyzer}
+\end{equation}
+这里 \(s_{x,q},s_{y,q}\) 是 fragmenting quark 的横极化分量，\(M_h^2=(p_1+p_2)^2\)，
+\(z\) 为双强子相对于母 parton 的动量分数。采用文献~\cite{Cao:2025wfg} 的投影 DiFF 记号：
+\(H_q\) 由 interference DiFF \(\HT\) 加权投影得到，已含相对动量权重，不再额外乘
+\(|\bm R_T|/M_h\)；\(D_q,H_q\) 本身不含 \(\phi_R\) 密度
+\cite{Cocuzza:2023vqs,Pitonyak:2023gjx}。
+
+\section{课题一：单极化 EIC 中的四费米算符}
+
+现有工作研究 inclusive DIS \(e_T^-p_T\to e^-X\)，用 electron 与 proton 的双横自旋恢复 SM 与
+semileptonic scalar/tensor SMEFT operators 的线性干涉\cite{Wang:2024zns}。本计划改为
+\[
+ e^-(k,S_{eT})+p(P)\to e^-(k')+
+ [h_1(p_1)h_2(p_2)]_{\rm jet}+X,
+ \qquad p\ {\rm unpolarized},
+\]
+考察 \(\mathcal O_{ledq},\mathcal O_{lequ}^{(1)},\mathcal O_{lequ}^{(3)}\)，并采用
+\(\mathcal L_{\rm SMEFT}\supset\sum_i C_i\mathcal O_i/\Lambda^2+{\rm h.c.}\)。
+物理上的替换不是 \(S_{T,p}\to\HT\)，而是把初态 transversity
+\(h_1^q(x)\) 提供的手征奇结构移到末态 \(f_1^q(x)H_q^{h_1h_2}(z,M_h)\)：
+电子横极化保持 electron-helicity coherence，DiFF 读取 outgoing-quark helicity coherence
+\cite{Wen:2024cfu}。
+
+在 \(Q^2=-(k-k')^2\gg M_h^2\) 的 current-fragmentation region，预期的 leading-twist 结构为
+\[
+ \dd\Delta\sigma\;\propto\;
+ P_{T,e}\frac{Q^2}{\Lambda^2}
+ \sum_{q,i} f_1^q(x)H_q^{h_1h_2}(z,M_h)
+ \bigl[\operatorname{Re}C_i\,K_{iR}^q+
+       \operatorname{Im}C_i\,K_{iI}^q\bigr],
+\]
+其中 \(\dd\Delta\sigma=[\dd\sigma(S_{eT})-\dd\sigma(-S_{eT})]/2\)，
+\(K_{iR,I}^q\) 是待计算的 \(\gamma/Z\)--SMEFT 干涉系数，含
+\(\sin\phi_R,\cos\phi_R\) 及电子自旋方位角的相关组合。
+角度在 \(\gamma^*p\) 系定义：\(\hat z\parallel\bm P_h\)，
+\(\hat y\parallel\bm k\times\bm P_h\)，\(\hat x=\hat y\times\hat z\)；
+电子自旋角则绕 \(\bm k\) 定义，沿用同一法向。
+先完成坐标与符号匹配，再确定分别投影 \(\operatorname{Re}C_i\)、\(\operatorname{Im}C_i\) 的角权重；
+原双初态横自旋方案的 \(\cos2\phi,\sin2\phi\) 不能直接照搬。
+
+实验上定义 beam-spin flip 的加权矩
+\[
+ A_{eT}^{w}=
+ \frac{\int \dd\phi_R\,w(\phi_R)
+ [\dd\sigma(S_{eT})-\dd\sigma(-S_{eT})]}
+ {P_{T,e}\int \dd\phi_R
+ [\dd\sigma(S_{eT})+\dd\sigma(-S_{eT})]},
+ \qquad w\in\{\sin\phi_R,\cos\phi_R\}.
+\]
+与原方案相比，这一 observable 不需要 polarized proton，也不依赖目前误差较大的 transversity PDF；
+代价是 DiFF 误差及双强子选择效率。以 \(\pi^+\pi^-\) 为基准，用 JAM replicas 传播误差，
+在相同 cuts、luminosity 与 \(Q\ll\Lambda\) 条件下比较新旧方案；要求线性项在
+\(P_{T,e}\to0\)、\(H_q\to0\) 或对 \(\phi_R\) 无权积分时消失。
+
+\section{课题二：用 DiFF 探测 LHC 的 strange Yukawa}
+
+文献~\cite{Michel:2025afc} 利用靶碎裂区的手征奇关联探测 light-quark Yukawa 干涉。
+本课题将 Cao、Wen、Yan、Zhang 的末态 DiFF 方案
+（arXiv:2512.16492）\cite{Cao:2025wfg} 从轻子对撞机推广至 \(pp\)，
+非微扰输入是 DiFF，而非靶碎裂区的 fracture function。目标过程为
+\[
+ \begin{gathered}
+ pp\to Z(\ell^+\ell^-)+[K^-\pi^+]_{J_1}+h'_{J_2}+X,\qquad h'=K^+,\\
+ \mathcal M_{Zs\bar s}=\mathcal M_{ZH,\,H\to s\bar s}
+ +\mathcal M^{\rm cont}_{Zs\bar s}.
+ \end{gathered}
+\]
+\(Z\to\ell^+\ell^-\) 提供 trigger 与 recoil，两支 jet 的全部组分重建 \(m_{jj}\simeq m_H\)；
+双强子自身满足 \(M_h\ll p_{T,J}\)，不是 Higgs 质量重建器。
+这里 Higgs-strahlung 链为 \(q\bar q\to Z^*\to ZH\)，不是实 \(Z\to Hs\bar s\)。
+取 CP-even coupling 为主要目标，
+\[
+ \mathcal L_{Hss}=-\frac{y_s}{\sqrt2}H\bar ss,
+ \qquad y_s=\kappa_s\,\frac{\sqrt2\,m_s(\mu)}{v},\qquad \mu\sim m_H.
+\]
+\(v\) 为 Higgs 真空期望值。单 quark 横自旋来自 Higgs 与同初末态、同颜色 continuum 的干涉，
+而非 pure Higgs decay；在忽略运动学质量的近似下，目标是得到线性于 \(y_s\) 的
+\(\rho_{+-}^{s}\)。在 \(Zjj\) 静止系取
+\(\hat z\parallel\bm P_h\)、\(\hat y\parallel\bm p_Z\times\bm P_h\)、
+\(\hat x=\hat y\times\hat z\)，定义式~\eqref{eq:analyzer} 的 \(\phi_R\)；
+这个参考系不依赖两束 proton 的编号。
+
+同一测量末态含 \(s\to(h_1h_2),\bar s\to h'\) 与
+\(\bar s\to(h_1h_2),s\to h'\) 两种碎裂指派。在 collinear limit，目标因子化结构为
+\[
+ \dd\sigma_s\;\sim\;\sum_{a,b} f_{a/p}\otimes f_{b/p}\otimes
+ \left[
+ C_s\,\mathcal F_s(\phi_R)D_{\bar s}^{h'}(\bar z)
+ +C_{\bar s}\,\mathcal F_{\bar s}(\phi_R)D_s^{h'}(\bar z)
+ \right],
+\]
+\(C_c\) 是带初态 \(a,b\) 标签的未极化 hard coefficient，\(C_c s_{x,c},C_c s_{y,c}\)
+含所需的 Yukawa 干涉；\(D_c^{h'}\) 是普通 single-hadron FF，\(\bar z\) 为其动量分数。
+
+关键的新输入是 \(H_s^{K\pi}\)，不能直接沿用原文的数值灵敏度。
+文献~\cite{Cao:2025wfg} 的 \(\pi^+\pi^-\) 基准采用
+\(H_s^{\pi\pi}=H_{\bar s}^{\pi\pi}=0\)，因此只分析 \(u,d\) Yukawa；
+反冲侧增加 kaon tag 并不能改变这一点。本计划优先考察有序 \(K^-\pi^+\) 及其
+电荷共轭道（\(p_1=p_K,p_2=p_\pi\)），但不预设其 strange DiFF 非零或足够大。
+需要通过 flavor-tagged \(e^+e^-\) 双强子关联约束其大小，并核查 flavor 分离与符号退化；在此之前，
+只能给出随 DiFF 输入变化的条件灵敏度，不能把 \(y_sH_s^{K\pi}\) 的约束称为 \(y_s\) 测量。
+
+对近似实的 continuum，Higgs pole 的 dispersive interference 在峰两侧反号。
+因此同时保留双强子方位与两 jet 质量信息，基准加权矩为
+\[
+ A_s[w]=\frac{\int w_{\rm pole}(m_{jj})w(\phi_R)\,\dd\sigma}
+ {\int\dd\sigma},
+ \quad
+ w_{\rm pole}={\rm sgn}(m_{jj}^{2}-m_H^2),
+ \quad w\in\{\sin\phi_R,\cos\phi_R\}.
+\]
+这里 \(\dd\sigma\) 包括选定末态的信号与背景。用完整 finite-width amplitude 和
+detector response 优化质量及角权重，并单独处理 absorptive 分量；窄宽近似
+\(\sigma(ZH)\operatorname{Br}(H\to s\bar s)\) 不足以计算干涉分子。
+不同电荷道先分别分析，避免合并后自旋信号抵消。数值扫描还须保留 \(y_s^2\) 对总率与
+Higgs 宽度的影响；“线性”仅指所选择的干涉项。
+
+\section{实施顺序与预期产出}
+
+先在统一自旋 convention 下重现两篇母方案，再分别计算 EIC 的 \(\gamma/Z\)--SMEFT 干涉
+和 \(pp\) 的完整 \(Zs\bar s\) density matrix。LHC 课题必须验证：对未观测 spin、color 求和
+及两束 PDF 卷积后，线性项仍非零；Higgs color-singlet 能干涉的 continuum 与主要
+QCD 背景须分开，后者即使不贡献分子仍会稀释分母。
+
+随后建立 DiFF/FF 卷积与 jet cuts 的匹配，加入 strange tagging、其他 flavor、
+\(Z+\)jets 背景及方位接受度，并检验 Higgs pole 两侧的干涉经过 jet-mass smearing 后是否保留。
+产出是 EIC 新旧方案的同条件约束比较，以及 LHC 对 \(y_s\) 的条件灵敏度与所需
+strange DiFF 精度。只有 hard 干涉、DiFF 标定和 detector-level 加权矩均可行，才给出
+定量 \(\kappa_s\) reach；不预先宣称具备测量 SM strange Yukawa 的能力。
+
+\begin{thebibliography}{9}
+\scriptsize
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+\bibitem{Wang:2024zns}
+H.-L. Wang \emph{et al.}, \emph{Phys. Rev. D} \textbf{109}, 095025 (2024), arXiv:2401.08419.
+
+\bibitem{Wen:2024cfu}
+X.-K. Wen \emph{et al.}, \emph{Sci. China Phys. Mech. Astron.} \textbf{69}, 271011 (2026),
+arXiv:2408.07255.
+
+\bibitem{Michel:2025afc}
+J. K. L. Michel, arXiv:2508.05914 (2025).
+
+\bibitem{Cao:2025wfg}
+Q.-H. Cao \emph{et al.}, \emph{Phys. Rev. Lett.} \textbf{136}, 231901 (2026), arXiv:2512.16492.
+
+\bibitem{Cocuzza:2023vqs}
+C. Cocuzza \emph{et al.} (JAM), \emph{Phys. Rev. D} \textbf{109}, 034024 (2024), arXiv:2308.14857.
+
+\bibitem{Pitonyak:2023gjx}
+D. Pitonyak \emph{et al.}, \emph{Phys. Rev. Lett.} \textbf{132}, 011902 (2024), arXiv:2305.11995.
+
+\end{thebibliography}
+
+\end{document}
