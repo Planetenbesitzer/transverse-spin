@@ -1,0 +1,54 @@
+% !TeX program = pdflatex
+% Tree-level s-channel photon and Z exchange.
+% Fermion arrows show fermion-number flow, not momentum flow.
+\documentclass[border=14pt]{standalone}
+\usepackage{amsmath,amssymb}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usetikzlibrary{decorations.pathmorphing,decorations.markings,arrows.meta}
+\tikzset{
+  fermion/.style={thick,postaction={decorate},
+    decoration={markings,mark=at position 0.55 with {\arrow{Stealth}}}},
+  photon/.style={thick,decorate,
+    decoration={snake,amplitude=1.4pt,segment length=6pt}}
+}
+\newcommand{\exchangegraph}[1]{%
+\begin{tikzpicture}
+  \coordinate (L) at (-1.2,0);
+  \coordinate (R) at (1.2,0);
+  \coordinate (em) at (-3.4,1.4);
+  \coordinate (ep) at (-3.4,-1.4);
+  \coordinate (mm) at (3.4,1.4);
+  \coordinate (mp) at (3.4,-1.4);
+  \draw[fermion] (em) -- (L);
+  \draw[fermion] (L) -- (ep);
+  \draw[photon] (L) -- (R);
+  \draw[fermion] (R) -- (mm);
+  \draw[fermion] (mp) -- (R);
+  \fill (L) circle (1.5pt);
+  \fill (R) circle (1.5pt);
+  \node[left] at (em) {$e^-(p_1)$};
+  \node[left] at (ep) {$e^+(p_2)$};
+  \node[right] at (mm) {$\mu^-(k_1)$};
+  \node[right] at (mp) {$\mu^+(k_2)$};
+  \node[above=9pt] at (0,0) {$#1(q)$};
+  \draw[-{Stealth[length=4pt]},thin] (-0.45,-0.5) -- (0.45,-0.5)
+    node[midway,below] {$q$};
+\end{tikzpicture}
+}
+\begin{document}
+\begin{minipage}{21cm}
+\centering
+\captionsetup{type=figure}
+\begin{subfigure}[t]{10cm}
+  \centering
+  \exchangegraph{\gamma^*}
+  \caption{}\label{fig:photon-exchange}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{10cm}
+  \centering
+  \exchangegraph{Z}
+  \caption{}\label{fig:z-exchange}
+\end{subfigure}
+\end{minipage}
+\end{document}
