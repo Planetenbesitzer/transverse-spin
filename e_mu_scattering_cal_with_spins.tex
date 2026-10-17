@@ -1,0 +1,706 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black]{hyperref}
+\numberwithin{equation}{section}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\linespread{1.2}
+\newcommand{\M}{\mathcal M}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\slsh}[1]{\not\!#1}
+\title{Tree-Level $e^-\mu^-\to e^-\mu^-$ Scattering}
+\author{Caiyi, Jiang}
+\date{}
+\begin{document}
+\maketitle
+
+\section{The process and the amplitude}
+Consider the process:
+\begin{equation}
+ e^-(p_1)+\mu^-(p_2)\longrightarrow e^-(p'_1)+\mu^-(p'_2),
+ \qquad p_1+p_2=p'_1+p'_2.
+\end{equation}
+According to the momentum conservation, the momentum transfer carried by the virtual photon is
+\begin{equation}
+ q=p'_1-p_1=p_2-p'_2.
+\end{equation}
+We use $g^{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)$, $m_e=0$, and
+$m_\mu=m$. The tree-level diagram is the $t$-channel photon exchange, so $q^2=t$.
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.6\textwidth]{C:/Users/LENOVO/OneDrive/Desktop/tranverse spin/step-0/figures/e_mu_t_channel_attached.png}
+ \caption{Tree-level $t$-channel photon exchange for
+ $e^-(p_1)+\mu^-(p_2)\to e^-(p'_1)+\mu^-(p'_2)$. }
+ \label{fig:e-mu-t-channel}
+\end{figure}
+
+According to the QED Feynman rules, for specified external spin labels
+$s_1,s_2,s'_1,s'_2$,
+\begin{align}
+ i\M_{s'_1s'_2;s_1s_2}
+ &=\left[\bar u_e(p'_1,s'_1)(-\ii e\gamma^\mu)u_e(p_1,s_1)\right]
+ \frac{-\ii g_{\mu\nu}}{q^2}
+ \left[\bar u_\mu(p'_2,s'_2)(-\ii e\gamma^\nu)u_\mu(p_2,s_2)\right]\\
+ &=\frac{\ii e^2}{q^2}
+ \left[\bar u_e(p'_1,s'_1)\gamma^\mu u_e(p_1,s_1)\right]
+ \left[\bar u_\mu(p'_2,s'_2)\gamma_\mu u_\mu(p_2,s_2)\right].
+\end{align}
+Removing the overall $\ii$ gives the amplitude
+\begin{equation}
+ \boxed{\M_{s'_1s'_2;s_1s_2}=
+ \frac{e^2}{q^2}
+ [\bar u_e(p'_1,s'_1)\gamma^\mu u_e(p_1,s_1)]
+ [\bar u_\mu(p'_2,s'_2)\gamma_\mu u_\mu(p_2,s_2)] .}
+ \label{eq:original-amplitude}
+\end{equation}
+
+
+\section{Unpolarized calculation using traces}
+\label{sec:unpolarized}
+We first calculate the unpolarized result as a reference. Sum over unobserved final spins and average over the initial spins of the unpolarized incoming particles. Completeness gives
+\begin{equation}
+ \sum_s u_e(p,s)\bar u_e(p,s)=\slsh p,\qquad
+ \sum_s u_\mu(p,s)\bar u_\mu(p,s)=\slsh p+m.
+\end{equation}
+There are two initial spin states for each incoming fermion, hence the average
+factor $1/4$. With $q^4\equiv(q^2)^2$,
+\begin{align}
+ \overline{|\M|^2}
+ &\equiv\frac14\sum_{\text{all spins}}|\M|^2\\
+ &=\frac{e^4}{4q^4}
+ \operatorname{Tr}[\slsh p'_1\gamma^\mu\slsh p_1\gamma^\nu]
+ \operatorname{Tr}[(\slsh p'_2+m)\gamma_\mu(\slsh p_2+m)\gamma_\nu]\\
+ &=\frac{e^4}{4q^4}L_e^{\mu\nu}L^{(\mu)}_{\mu\nu}.
+ \label{eq:trace-start}
+\end{align}
+The label $(\mu)$ on $L^{(\mu)}$ identifies the muon tensor; the repeated
+Lorentz indices are contracted.
+
+\subsection{Evaluate the muon trace}
+Expand the two factors $(\slsh p'_2+m)$ and $(\slsh p_2+m)$:
+\begin{align}
+ L^{(\mu)}_{\mu\nu}
+ &=\operatorname{Tr}[\slsh p'_2\gamma_\mu\slsh p_2\gamma_\nu]
+ +m\operatorname{Tr}[\slsh p'_2\gamma_\mu\gamma_\nu]
+ +m\operatorname{Tr}[\gamma_\mu\slsh p_2\gamma_\nu]
+ +m^2\operatorname{Tr}[\gamma_\mu\gamma_\nu].
+\end{align}
+The middle two terms contain an odd number of gamma matrices, so their traces
+vanish. Use
+\begin{align}
+ \operatorname{Tr}(\gamma^\alpha\gamma^\mu\gamma^\beta\gamma^\nu)
+ &=4(g^{\alpha\mu}g^{\beta\nu}-g^{\alpha\beta}g^{\mu\nu}
+       +g^{\alpha\nu}g^{\mu\beta}),\\
+ \operatorname{Tr}(\gamma^\mu\gamma^\nu)&=4g^{\mu\nu}.
+\end{align}
+Writing $\slsh p'_2=p'_{2\alpha}\gamma^\alpha$ and
+$\slsh p_2=p_{2\beta}\gamma^\beta$, the four-gamma term becomes
+\begin{align}
+ \operatorname{Tr}[\slsh p'_2\gamma^\mu\slsh p_2\gamma^\nu]
+ &=4p'_{2\alpha}p_{2\beta}
+ (g^{\alpha\mu}g^{\beta\nu}-g^{\alpha\beta}g^{\mu\nu}
+       +g^{\alpha\nu}g^{\mu\beta})\\
+ &=4(p_2'{}^\mu p_2^\nu+p_2'{}^\nu p_2^\mu
+       -g^{\mu\nu}p'_2\!\cdot p_2).
+\end{align}
+The remaining two-gamma term is
+$m^2\operatorname{Tr}(\gamma^\mu\gamma^\nu)=4m^2g^{\mu\nu}$.
+Combining them gives
+\begin{equation}
+ L^{(\mu)\mu\nu}=4\left[p_2'{}^\mu p_2^\nu+p_2'{}^\nu p_2^\mu
+ -g^{\mu\nu}(p'_2\!\cdot p_2-m^2)\right].
+ \label{eq:muon-trace}
+\end{equation}
+
+\subsection{Evaluate the electron trace}
+Since $m_e=0$, the electron trace is
+\begin{align}
+ L_e^{\mu\nu}
+ &=\operatorname{Tr}[\slsh p'_1\gamma^\mu\slsh p_1\gamma^\nu]\\
+ &=p'_{1\alpha}p_{1\beta}
+   \operatorname{Tr}[\gamma^\alpha\gamma^\mu\gamma^\beta\gamma^\nu]\\
+ &=4\left[p_1'{}^\mu p_1^\nu+p_1'{}^\nu p_1^\mu
+       -g^{\mu\nu}(p'_1\!\cdot p_1)\right].
+ \label{eq:electron-trace}
+\end{align}
+
+\subsection{Contract the traces}
+For clarity, define $a=p'_1\!\cdot p_1$ and
+$b=p'_2\!\cdot p_2$. Substituting Eqs.~\eqref{eq:muon-trace} and
+\eqref{eq:electron-trace} gives
+\begin{align}
+ L_e^{\mu\nu}L^{(\mu)}_{\mu\nu}
+ =16[&p_1'{}^\mu p_1^\nu+p_1'{}^\nu p_1^\mu-g^{\mu\nu}a]\\
+ \times[&p'_{2\mu}p_{2\nu}+p'_{2\nu}p_{2\mu}
+             -g_{\mu\nu}(b-m^2)].
+\end{align}
+Multiply each term in the first bracket by each term in the second. The four
+momentum-by-momentum products give
+\begin{equation}
+ 2(p'_1\!\cdot p'_2)(p_1\!\cdot p_2)
+ +2(p'_1\!\cdot p_2)(p_1\!\cdot p'_2).
+\end{equation}
+The terms containing a metric give, in order,
+\begin{align}
+ &-2a(b-m^2)-2ab+4a(b-m^2)\\
+ &=-2ab+2am^2-2ab+4ab-4am^2\\
+ &=-2am^2.
+\end{align}
+Therefore
+\begin{align}
+ L_e^{\mu\nu}L^{(\mu)}_{\mu\nu}
+ &=16\left[2(p'_1\!\cdot p'_2)(p_1\!\cdot p_2)
+ +2(p'_1\!\cdot p_2)(p_1\!\cdot p'_2)-2m^2(p'_1\!\cdot p_1)\right]\\
+ &=32\left[(p_1\!\cdot p'_2)(p'_1\!\cdot p_2)
+ +(p_1\!\cdot p_2)(p'_1\!\cdot p'_2)-m^2(p_1\!\cdot p'_1)\right].
+\end{align}
+Insert this result into Eq.~\eqref{eq:trace-start}:
+\begin{equation}
+ \boxed{\overline{|\M|^2}=\frac{8e^4}{q^4}
+ \left[(p_1\!\cdot p'_2)(p'_1\!\cdot p_2)
+ +(p_1\!\cdot p_2)(p'_1\!\cdot p'_2)-m^2(p_1\!\cdot p'_1)\right].}
+ \label{eq:invariant-result}
+\end{equation}
+This is the invariant result from the original calculation.
+
+\subsection{Centre-of-momentum kinematics and final result}
+\label{sec:cm-kinematics}
+In the centre-of-momentum frame, the incoming electron travels along $+z$ and the incoming muon along $-z$. The outgoing electron is scattered through angle $\theta$ in the $xz$ plane.
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.6\textwidth]{C:/Users/LENOVO/OneDrive/Desktop/tranverse spin/step-0/figures/e_mu_cm_kinematics_attached.png}
+ \caption{Centre-of-momentum geometry.}
+ \label{fig:e-mu-cm-kinematics}
+\end{figure}
+The four-momenta are
+\begin{align}
+ p_1&=(k,0,0,k),&p_2&=(E,0,0,-k),\\
+ p'_1&=(k,k\sin\theta,0,k\cos\theta),&
+ p'_2&=(E,-k\sin\theta,0,-k\cos\theta),
+\end{align}
+with $E=\sqrt{k^2+m^2}$. Using
+$p\!\cdot r=p^0r^0-\bm p\!\cdot\bm r$, calculate the scalar products:
+\begin{align}
+ p_1\!\cdot p_2
+ &=kE-(0,0,k)\!\cdot(0,0,-k)=kE+k^2=k(E+k),\\
+ p'_1\!\cdot p'_2
+ &=kE-(k\sin\theta,0,k\cos\theta)\!\cdot
+       (-k\sin\theta,0,-k\cos\theta)\\
+ &=kE+k^2(\sin^2\theta+\cos^2\theta)=k(E+k),\\
+ p_1\!\cdot p'_2
+ &=kE-(0,0,k)\!\cdot(-k\sin\theta,0,-k\cos\theta)
+ =k(E+k\cos\theta),\\
+ p'_1\!\cdot p_2
+ &=kE-(k\sin\theta,0,k\cos\theta)\!\cdot(0,0,-k)
+ =k(E+k\cos\theta),\\
+ p_1\!\cdot p'_1
+ &=k^2-(0,0,k)\!\cdot(k\sin\theta,0,k\cos\theta)
+ =k^2(1-\cos\theta).
+\end{align}
+The momentum transfer is
+\begin{align}
+ q&=p'_1-p_1\\
+ &=(k,k\sin\theta,0,k\cos\theta)-(k,0,0,k)\\
+ &=(0,k\sin\theta,0,k(\cos\theta-1)),\\
+ q^2&=-k^2\sin^2\theta-k^2(\cos\theta-1)^2\\
+ &=-k^2[\sin^2\theta+\cos^2\theta-2\cos\theta+1]\\
+ &=-2k^2(1-\cos\theta),\\
+ q^4&=(q^2)^2=4k^4(1-\cos\theta)^2.
+ \label{eq:q-kinematics}
+\end{align}
+Substitute the scalar products into Eq.~\eqref{eq:invariant-result}:
+\begin{align}
+ \overline{|\M|^2}
+ &=\frac{8e^4}{q^4}\left[
+ k^2(E+k\cos\theta)^2+k^2(E+k)^2
+ -m^2k^2(1-\cos\theta)\right]\\
+ &=\frac{8e^4k^2}{4k^4(1-\cos\theta)^2}
+ \left[(E+k\cos\theta)^2+(E+k)^2
+ -m^2(1-\cos\theta)\right].
+\end{align}
+Thus the final spin-averaged result is
+\begin{equation}
+ \boxed{\overline{|\M|^2}=
+ \frac{2e^4}{k^2(1-\cos\theta)^2}
+ \left[(E+k)^2+(E+k\cos\theta)^2
+       -m^2(1-\cos\theta)\right].}
+ \label{eq:final-result}
+\end{equation}
+
+
+\section{Helicity amplitudes}
+\label{sec:helicity}
+We now calculate individual helicity amplitudes and check their spin average against the unpolarized result in Eq.~\eqref{eq:final-result}.
+
+\subsection{Helicity spinors and centre-of-momentum kinematics}
+We label each fermion by its helicity $\lambda=+$ or $-$, corresponding to
+$h=+1$ or $h=-1$ in formulas that use $h$; the physical helicity eigenvalue
+is $h/2$. For a momentum direction $(\vartheta,\varphi)$, define the
+ two-component helicity spinors
+\begin{align}
+ \xi_+(p)&=\begin{pmatrix}\cos(\vartheta/2)\\
+ e^{\ii\varphi}\sin(\vartheta/2)\end{pmatrix},&
+ \xi_-(p)&=\begin{pmatrix}-e^{-\ii\varphi}\sin(\vartheta/2)\\
+ \cos(\vartheta/2)\end{pmatrix}.
+ \label{eq:xi}
+\end{align}
+They represent positive and negative helicity, respectively. Their angular
+dependence specifies how the spinor components change as the momentum
+direction changes.
+
+In the Weyl representation, positive-energy fermion spinors are
+\begin{align}
+ u_+(p)&=\begin{pmatrix}\sqrt{E_f-|\bm p|}\,\xi_+\\
+                       \sqrt{E_f+|\bm p|}\,\xi_+\end{pmatrix},&
+ u_-(p)&=\begin{pmatrix}\sqrt{E_f+|\bm p|}\,\xi_-\\
+                       \sqrt{E_f-|\bm p|}\,\xi_-\end{pmatrix}.
+ \label{eq:helicity-spinors}
+\end{align}
+For the electron, $E_f=|\bm p|=k$, so one Weyl component vanishes for each
+helicity. For the muon, $E_f=E=\sqrt{k^2+m^2}$ and $|\bm p|=k$, so both
+components remain. Thus the massless-electron approximation and the nonzero
+muon mass enter through the spinor components here.
+
+We use the centre-of-momentum geometry introduced in
+Sec.~\ref{sec:cm-kinematics} and shown in Fig.~\ref{fig:e-mu-cm-kinematics}.
+The four-momenta, including their time components, are
+\begin{align}
+ p_1&=(k,0,0,k),&p_2&=(E,0,0,-k),\\
+ p'_1&=(k,k\sin\theta,0,k\cos\theta),&
+ p'_2&=(E,-k\sin\theta,0,-k\cos\theta).
+\end{align}
+We choose the polar and azimuthal angles to be
+\begin{align}
+ (\vartheta_{p_1},\varphi_{p_1})&=(0,0),&
+ (\vartheta_{p_2},\varphi_{p_2})&=(\pi,\pi),\\
+ (\vartheta_{p'_1},\varphi_{p'_1})&=(\theta,0),&
+ (\vartheta_{p'_2},\varphi_{p'_2})&=(\pi-\theta,\pi).
+ \label{eq:angles}
+\end{align}
+At a pole, the azimuth is a phase convention for the spinor rather than a
+physical feature of the momentum direction. Keeping this convention fixed
+makes the relative phases between spin states consistent.
+
+\subsection{Helicity amplitude and calculation strategy}
+Replace the spin labels in Eq.~\eqref{eq:original-amplitude} by
+$s_1=\lambda_1$, $s_2=\lambda_2$, $s'_1=\lambda_3$, and
+$s'_2=\lambda_4$. The amplitude with all four helicity labels explicit is
+\begin{equation}
+ \boxed{\M_{\lambda_3\lambda_4;\lambda_1\lambda_2}
+ =\frac{e^2}{q^2}
+ [\bar u_{e,\lambda_3}(p'_1)\gamma^\mu u_{e,\lambda_1}(p_1)]
+ [\bar u_{\mu,\lambda_4}(p'_2)\gamma_\mu u_{\mu,\lambda_2}(p_2)] .}
+ \label{eq:helicity-amplitude}
+\end{equation}
+For a fixed helicity assignment, evaluate it in this order:
+\begin{enumerate}
+ \item Choose the four helicities.
+ \item Substitute the corresponding external spinors from
+       Eq.~\eqref{eq:helicity-spinors}.
+ \item Evaluate the electron and muon currents.
+ \item Contract their Lorentz indices to obtain the amplitude.
+ \item Take the absolute square.
+\end{enumerate}
+\textbf{Each individual helicity amplitude is calculated using explicit spinors.} The completeness relation $\sum_s u(p,s)\bar u(p,s)=\slsh p+m$ was used in Sec.~\ref{sec:unpolarized} to sum over unobserved spins and average over unpolarized initial spins. Keeping the helicity amplitudes
+separate also allows coherent superpositions of different helicities to
+interfere, as required for transverse-spin states.
+
+\subsection{Electron current}
+Set $c=\cos(\theta/2)$ and $s=\sin(\theta/2)$. The incoming electron moves
+along $+z$, giving
+\begin{equation}
+ \xi_+(p_1)=\begin{pmatrix}1\\0\end{pmatrix},\qquad
+ \xi_-(p_1)=\begin{pmatrix}0\\1\end{pmatrix}.
+\end{equation}
+The outgoing electron has direction angles $(\theta,0)$, so
+\begin{equation}
+ \xi_+(p'_1)=\begin{pmatrix}c\\s\end{pmatrix},\qquad
+ \xi_-(p'_1)=\begin{pmatrix}-s\\c\end{pmatrix}.
+\end{equation}
+Their Hermitian conjugates are
+\begin{equation}
+ \xi_+^\dagger(p'_1)=(c,s),\qquad
+ \xi_-^\dagger(p'_1)=(-s,c).
+\end{equation}
+The Pauli matrices needed for the spatial current components are
+\begin{equation}
+ \sigma^1=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+ \sigma^2=\begin{pmatrix}0&-\ii\\\ii&0\end{pmatrix},\quad
+ \sigma^3=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\end{equation}
+For each incoming and outgoing helicity, define the two-component products
+\begin{equation}
+ X^0=\xi_{h'}^\dagger(p'_1)\xi_h(p_1),\qquad
+ X^i=\xi_{h'}^\dagger(p'_1)\sigma^i\xi_h(p_1)\quad(i=1,2,3).
+\end{equation}
+As an example, for the $++$ assignment,
+\begin{align}
+ X^0&=(c,s)\begin{pmatrix}1\\0\end{pmatrix}=c,&
+ X^1&=(c,s)\begin{pmatrix}0\\1\end{pmatrix}=s,\\
+ X^2&=(c,s)\begin{pmatrix}0\\\ii\end{pmatrix}=\ii s,&
+ X^3&=(c,s)\begin{pmatrix}1\\0\end{pmatrix}=c.
+\end{align}
+\textbf{For a massless positive-helicity electron}, the nonzero Weyl component gives
+$\bar u\gamma^\mu u=2k(X^0,X^1,X^2,X^3)$, hence
+\begin{equation}
+ J^\mu_e(p'_1+,p_1+)=(2kc,2ks,2\ii ks,2kc).
+ \label{eq:electron-current-example}
+\end{equation}
+
+For clarity, here is a second explicit example, with outgoing helicity $-$
+and incoming helicity $+$. In this case
+$\xi_-^\dagger(p'_1)=(-s,c)$ and $\xi_+(p_1)=(1,0)^T$, so
+\begin{align}
+ X^0&=(-s,c)\begin{pmatrix}1\\0\end{pmatrix}=-s,&
+ X^1&=(-s,c)\begin{pmatrix}0\\1\end{pmatrix}=c,\\
+ X^2&=(-s,c)\begin{pmatrix}0\\\ii\end{pmatrix}=\ii c,&
+ X^3&=(-s,c)\begin{pmatrix}1\\0\end{pmatrix}=-s.
+\end{align}
+Thus $(X^0,X^1,X^2,X^3)_{-+}=(-s,c,\ii c,-s)$. Repeating the same
+multiplication for the other assignments gives
+\begin{align}
+ (X^0,X^1,X^2,X^3)_{++}&=(c,s,\ii s,c),&
+ (X^0,X^1,X^2,X^3)_{--}&=(c,-s,\ii s,-c),\\
+ (X^0,X^1,X^2,X^3)_{+-}&=(s,c,-\ii c,-s),&
+ (X^0,X^1,X^2,X^3)_{-+}&=(-s,c,\ii c,-s).
+ \label{eq:electron-products}
+\end{align}
+The first sign labels the outgoing helicity and the second the incoming
+helicity.
+
+\paragraph{From the Pauli products to the full electron currents.}
+
+Define $J^\mu_{e,h'h}=\bar u_{h'}(p'_1)\gamma^\mu u_h(p_1)$, with the
+outgoing helicity first. In the massless limit, Eq.~\eqref{eq:helicity-spinors}
+becomes
+\begin{equation}
+ u_+(p)=\sqrt{2k}\begin{pmatrix}0_2\\\xi_+(p)\end{pmatrix},\qquad
+ u_-(p)=\sqrt{2k}\begin{pmatrix}\xi_-(p)\\0_2\end{pmatrix},
+ \qquad 0_2=\begin{pmatrix}0\\0\end{pmatrix}.
+\end{equation}
+The matrices entering the current are block diagonal:
+\begin{equation}
+ \gamma^0\gamma^0=\begin{pmatrix}I_2&0\\0&I_2\end{pmatrix},\qquad
+ \gamma^0\gamma^i=\begin{pmatrix}-\sigma^i&0\\0&\sigma^i\end{pmatrix},
+ \qquad i=1,2,3.
+\end{equation}
+Since $J^\mu=u'^\dagger\gamma^0\gamma^\mu u$, the lower Weyl block gives
+$J^0_{e,++}=2kX^0_{++}$ and $J^i_{e,++}=2kX^i_{++}$. The upper block gives
+$J^0_{e,--}=2kX^0_{--}$ and $J^i_{e,--}=-2kX^i_{--}$: only the spatial
+components acquire a minus sign. Substitution therefore gives
+\begin{equation}
+\boxed{\begin{aligned}
+ J^\mu_{e,++}&=2k(X^0_{++},X^1_{++},X^2_{++},X^3_{++})
+ \\[-0.2em]
+ &=(2kc,2ks,2\ii ks,2kc),\\[0.6em]
+ J^\mu_{e,--}&=2k(X^0_{--},-X^1_{--},-X^2_{--},-X^3_{--})
+ \\[-0.2em]
+ &=(2kc,2ks,-2\ii ks,2kc).
+\end{aligned}}
+ \label{eq:electron-currents}
+\end{equation}
+For a helicity-flip transition, the incoming and outgoing spinors occupy
+opposite Weyl blocks. Every $\gamma^0\gamma^\mu$ above is block diagonal,
+so it cannot connect those blocks. Explicitly, writing
+$D_i=\operatorname{diag}(-\sigma^i,\sigma^i)$,
+\begin{align}
+ J^0_{e,+-}&=2k(0_2^\dagger,\xi_+'{}^\dagger)
+ \begin{pmatrix}\xi_-\\0_2\end{pmatrix}=0,&
+ J^i_{e,+-}&=2k(0_2^\dagger,\xi_+'{}^\dagger)D_i
+ \begin{pmatrix}\xi_-\\0_2\end{pmatrix}=0,\\
+ J^0_{e,-+}&=2k(\xi_-'{}^\dagger,0_2^\dagger)
+ \begin{pmatrix}0_2\\\xi_+\end{pmatrix}=0,&
+ J^i_{e,-+}&=2k(\xi_-'{}^\dagger,0_2^\dagger)D_i
+ \begin{pmatrix}0_2\\\xi_+\end{pmatrix}=0.
+\end{align}
+\begin{equation}
+      \boxed{J^\mu_{e,+-}=0,\qquad J^\mu_{e,-+}=0.}
+\end{equation}
+Here $\xi'_h=\xi_h(p'_1)$ and $\xi_h=\xi_h(p_1)$. This is the explicit
+spinor form of helicity conservation at the massless electron vector vertex.
+The Pauli products $X^\mu_{+-}$ and $X^\mu_{-+}$ can be nonzero, while the
+complete currents vanish because of their Weyl-block structure.
+
+\subsection{Muon current}
+For the muon, both Weyl components contribute. 
+
+Write
+$u_h=(a_h\xi_h,b_h\xi_h)^T$, where
+$a_h=\sqrt{E-hk}$ and $b_h=\sqrt{E+hk}$ for $h=+1,-1$. Multiplying the
+upper and lower two-component blocks gives
+\begin{align}
+ \bar u_{h'}(p'_2)\gamma^0u_h(p_2)
+ &=(b_{h'}b_h+a_{h'}a_h)\,\xi_{h'}^\dagger(p'_2)\xi_h(p_2),\\
+ \bar u_{h'}(p'_2)\gamma^iu_h(p_2)
+ &=(b_{h'}b_h-a_{h'}a_h)\,\xi_{h'}^\dagger(p'_2)\sigma^i\xi_h(p_2),
+ \qquad i=1,2,3.
+\end{align}
+With $a_\pm=\sqrt{E\mp k}$ and $b_\pm=\sqrt{E\pm k}$, the coefficients
+multiplying the time and spatial two-component products are
+\begin{align}
+ A_{++}=A_{--}&=b_+^2+a_+^2=2E,\\
+ B_{++}&=b_+^2-a_+^2=2k,& B_{--}&=b_-^2-a_-^2=-2k,\\
+ A_{+-}=A_{-+}&=b_+b_-+a_+a_-=2m,&
+ B_{+-}&=B_{-+}=b_+b_--a_+a_-=0.
+\end{align}
+The resulting four muon currents are
+\begin{equation}
+\boxed{\begin{aligned}
+ J^\mu_{\mu,++}&=(2Ec,-2ks,2\ii ks,-2kc),&
+ J^\mu_{\mu,--}&=(2Ec,-2ks,-2\ii ks,-2kc),\\
+ J^\mu_{\mu,+-}&=(2ms,0,0,0),&
+ J^\mu_{\mu,-+}&=(-2ms,0,0,0).
+\end{aligned}}
+ \label{eq:muon-currents}
+\end{equation}
+Here the first helicity is outgoing and the second is incoming.
+In the present centre-of-momentum kinematics, \textbf{the muon helicity-flip
+currents have only a time component and are proportional to the mass $m$}.
+They therefore vanish in the limit $m\to0$. 
+\begin{itemize}
+      \item The $++$ current at $\theta=0$ reduces to $(2E,0,0,-2k)$, as expected for a muon moving along $-z$.
+\end{itemize}
+
+
+\subsection{The helicity-amplitude table for this process}
+The amplitude is the product of the electron and muon currents, 
+\begin{equation}
+      \M_{\lambda_3\lambda_4;\lambda_1\lambda_2}
+      =\frac{e^2}{q^2}J_e\!\cdot J_\mu
+\end{equation}
+For example, for initial helicities $(\lambda_1,\lambda_2)=(+,+)$ and final
+helicities $(\lambda_3,\lambda_4)=(+,+)$,
+\begin{align}
+ J_e\!\cdot J_\mu
+ &=J_e^0J_\mu^0-J_e^1J_\mu^1-J_e^2J_\mu^2-J_e^3J_\mu^3\\
+ &=(2kc)(2Ec)-(2ks)(-2ks)-(2\ii ks)(2\ii ks)
+       -(2kc)(-2kc)\\
+ &=4kEc^2+4k^2s^2+4k^2s^2+4k^2c^2\\
+ &=4k\left[(E+k)c^2+2ks^2\right].
+\end{align}
+Define
+\begin{equation}
+ F=(E+k)c^2+2ks^2,\qquad G=(E+k)c^2,\qquad H=m\,s\,c.
+\end{equation}
+The same four multiplications for each allowed helicity choice give the table
+below. Rows are the incoming pair $(\lambda_1,\lambda_2)$ and columns are
+the outgoing pair $(\lambda_3,\lambda_4)$. The entries are $q^2\M/(4ke^2)$; multiply each by $4ke^2/q^2$ to recover the corresponding amplitude. 
+\begin{equation}
+\renewcommand{\arraystretch}{1.25}
+\begin{array}{c|cccc}
+ (\lambda_1,\lambda_2)\backslash(\lambda_3,\lambda_4)
+ &++&+-&-+&--\\ \hline
+ ++&F&-H&0&0\\
+ +-&H&G&0&0\\
+ -+&0&0&G&-H\\
+ --&0&0&H&F
+\end{array}
+ \label{eq:helicity-table}
+\end{equation}
+The table contains
+\begin{itemize}
+ \item two entries equal to $F$;
+ \item two entries equal to $G$;
+ \item four entries with magnitude $H$;
+ \item zeros in all remaining positions.
+\end{itemize}
+\textbf{Different final helicity states are orthogonal. }When the final spins are
+unobserved, we therefore \textbf{sum their probabilities}. For unpolarized
+incoming particles, we also average over the initial helicity states.
+The spin average is defined by
+\begin{equation}
+ \overline{|\M|^2}_{\rm helicity}
+ =\frac14\sum_{\lambda_1,\lambda_2}\sum_{\lambda_3,\lambda_4}
+ \left|\M_{\lambda_3\lambda_4;\lambda_1\lambda_2}\right|^2.
+\end{equation}
+Every amplitude in the table has the common factor $4ke^2/q^2$.
+For each fixed incoming pair, sum the squared magnitudes of the four
+entries across its row. Since $F$, $G$, and $H$ are real, these row sums are
+\begin{align}
+ (\lambda_1,\lambda_2)=(+,+):\quad
+ &F^2+(-H)^2+0+0=F^2+H^2,\\
+ (\lambda_1,\lambda_2)=(+,-):\quad
+ &H^2+G^2+0+0=H^2+G^2,\\
+ (\lambda_1,\lambda_2)=(-,+):\quad
+ &0+0+G^2+(-H)^2=G^2+H^2,\\
+ (\lambda_1,\lambda_2)=(-,-):\quad
+ &0+0+H^2+F^2=H^2+F^2.
+\end{align}
+\begin{align}
+ \overline{|\M|^2}_{\rm helicity}
+ &=\frac14\left(\frac{4ke^2}{q^2}\right)^2
+       (2F^2+2G^2+4H^2)\\
+ &=\frac{8k^2e^4}{q^4}(F^2+G^2+2H^2).
+\end{align}
+The factor $1/4$ arises because the incoming electron and muon each have
+two spin states, giving four equally weighted initial helicity pairs.
+
+Since $c^2=1-s^2$ and $\cos\theta=1-2s^2$, direct expansion gives
+\begin{align}
+ F^2+G^2+2H^2
+ &=(E+k-2ks^2)^2+(E+k)^2-2m^2s^2\\
+ &=(E+k\cos\theta)^2+(E+k)^2
+       -m^2(1-\cos\theta).
+\end{align}
+Substituting this expression into the helicity spin average and using
+$q^4=4k^4(1-\cos\theta)^2$ from Eq.~\eqref{eq:q-kinematics} gives the final result
+\begin{equation}
+ \boxed{\begin{aligned}
+ \overline{|\M|^2}_{\rm helicity}
+ &=\frac{2e^4}{k^2(1-\cos\theta)^2}
+ &\quad\times\left[(E+k)^2+(E+k\cos\theta)^2
+             -m^2(1-\cos\theta)\right].
+ \end{aligned}}
+ \label{eq:helicity-final-result}
+\end{equation}
+This agrees with the trace result in Eq.~\eqref{eq:final-result}, checking
+the unpolarized normalization and the sum of squared helicity amplitudes.
+
+
+\section{Transverse-spin states and interference}
+\label{sec:transverse}
+We now use the helicity amplitudes to describe a muon whose spin points
+perpendicular to its momentum. The key rule is to combine amplitudes
+first and take the absolute square afterwards.
+
+\subsection{A transverse state contains both helicities}
+A general normalized spin state is
+\begin{equation}
+ |\psi\rangle=\alpha|+\rangle+\beta|-\rangle,\qquad
+ |\alpha|^2+|\beta|^2=1.
+ \label{eq:helicity-superposition}
+\end{equation}
+Here $|\alpha|^2$ and $|\beta|^2$ are the two helicity probabilities.
+The corresponding external spinor is $u_\psi=\alpha u_++\beta u_-$.
+For a pure transverse state, the two probabilities are equal. Their
+relative phase determines the transverse direction.
+
+For our incoming muon, the chosen phases give
+$\xi_+(p_2)=(0,-1)^T$ and $\xi_-(p_2)=(1,0)^T$.
+Their difference is proportional to $(1,1)^T$, the spin state along $+x$.
+Thus the physical $x$ states in this convention are
+\begin{equation}
+ u_{\mu,+x}=\frac{u_+-u_-}{\sqrt2},\qquad
+ u_{\mu,-x}=\frac{u_++u_-}{\sqrt2}.
+ \label{eq:x-spinors}
+\end{equation}
+All spinors here have momentum $p_2$. The minus sign for $+x$ follows from
+this phase convention.
+
+\subsection{Adding amplitudes and finding interference}
+Fix the electron's incoming helicity and the final helicities. Let $A_+$
+and $A_-$ be the amplitudes for incoming muon helicities $+$ and $-$.
+Linearity gives
+\begin{equation}
+ \M_\psi=\alpha A_++\beta A_-.
+\end{equation}
+For the $+x$ state, this becomes
+\begin{equation}
+ \M_{+x}=\frac{A_+-A_-}{\sqrt2}.
+ \label{eq:x-amplitude}
+\end{equation}
+For example, with incoming electron helicity $+$ and final state $++$,
+the table gives $A_+=CF$ and $A_-=CH$, where $C=4ke^2/q^2$. Therefore,
+\begin{equation}
+ \M_{++;+,+x}=\frac{C}{\sqrt2}(F-H).
+\end{equation}
+Taking the absolute square gives
+\begin{equation}
+ |\M_{+x}|^2=\frac12\left(
+ |A_+|^2+|A_-|^2-2\operatorname{Re}[A_+A_-^*]\right).
+ \label{eq:interference}
+\end{equation}
+The last term is interference between two helicities leading to the same
+final state. An unpolarized muon gives
+$(|A_+|^2+|A_-|^2)/2$, without this interference term.
+
+When final spins are unobserved, sum their probabilities. For incoming
+electron helicities $+$ and $-$, respectively, the table gives
+\begin{align}
+ P_+&=\frac{C^2}{2}\left[(F-H)^2+(G+H)^2\right],\\
+ P_-&=\frac{C^2}{2}\left[(G-H)^2+(F+H)^2\right].
+\end{align}
+For an unpolarized electron, average these two expressions:
+\begin{equation}
+ \frac{P_++P_-}{2}
+ =\frac{C^2}{2}(F^2+G^2+2H^2)
+ =\overline{|\M|^2}_{\rm unpolarized}.
+\end{equation}
+The interference contributions cancel. In our tree-level calculation,
+polarizing only the muon transversely therefore leaves this spin-summed
+result unchanged when the electron is unpolarized.
+
+\subsection{Where the density matrix comes from}
+A density matrix records spin probabilities and their interference.
+In the ordered helicity basis $(|+\rangle,|-\rangle)$, the state is the
+coefficient column $(\alpha,\beta)^T$. For a pure state, define
+\begin{equation}
+ \rho=|\psi\rangle\langle\psi|
+ =\begin{pmatrix}\alpha\\\beta\end{pmatrix}(\alpha^*,\beta^*)
+ =\begin{pmatrix}
+ |\alpha|^2&\alpha\beta^*\\
+ \alpha^*\beta&|\beta|^2
+ \end{pmatrix}.
+ \label{eq:pure-spin-density}
+\end{equation}
+The diagonal entries are the two helicity probabilities. The off-diagonal
+entries contain the relative phase.
+
+To write these entries using real numbers, define
+\begin{equation}
+ s_z=|\alpha|^2-|\beta|^2,\qquad
+ s_x=2\operatorname{Re}(\alpha^*\beta),\qquad
+ s_y=2\operatorname{Im}(\alpha^*\beta).
+\end{equation}
+Normalization then gives
+\begin{equation}
+ |\alpha|^2=\frac{1+s_z}{2},\qquad
+ |\beta|^2=\frac{1-s_z}{2},\qquad
+ \alpha\beta^*=\frac{s_x-\ii s_y}{2}.
+\end{equation}
+Substitution gives the density matrix
+\begin{equation}
+ \boxed{\rho=\frac12\begin{pmatrix}
+ 1+s_z&s_x-\ii s_y\\
+ s_x+\ii s_y&1-s_z
+ \end{pmatrix}.}
+ \label{eq:spin-density-matrix}
+\end{equation}
+The parameters $s_x,s_y,s_z$ describe polarization in the helicity basis;
+they are distinct from $s=\sin(\theta/2)$. For our phase convention, the
+global $+x$ state has $(\alpha,\beta)=(1,-1)/\sqrt2$, so $s_x=-1$.
+For comparison,
+\begin{equation}
+ \rho_{+x}=\frac12\begin{pmatrix}1&-1\\-1&1\end{pmatrix},\qquad
+ \rho_{\rm unpolarized}=\frac12\begin{pmatrix}1&0\\0&1\end{pmatrix}.
+\end{equation}
+Both have equal helicity probabilities. Only the transverse pure state has
+off-diagonal entries.
+
+For a beam containing different spin states, average their density matrices
+with their probabilities. The same matrix form applies. A fully polarized
+state has $|\bm s|=1$, a partially polarized beam has $0<|\bm s|<1$, and an
+unpolarized beam has $\bm s=0$.
+
+For fixed electron helicity and final state, the squared amplitude obtained
+with this matrix is
+\begin{equation}
+ \begin{aligned}
+ \mathcal P_f(\rho)
+ &=\rho_{++}|A_+|^2+\rho_{--}|A_-|^2\\
+ &\quad+\rho_{+-}A_+A_-^*+\rho_{-+}A_-A_+^*.
+ \end{aligned}
+\end{equation}
+The first two terms weight the helicity probabilities. The last two terms
+give interference. Inserting $\rho_{+x}$ reproduces
+$|A_+-A_-|^2/2$; inserting $\rho_{\rm unpolarized}$ gives
+$(|A_+|^2+|A_-|^2)/2$.
+
+\end{document}
