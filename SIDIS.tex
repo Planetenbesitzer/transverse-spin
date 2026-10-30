@@ -1,0 +1,1426 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black]{hyperref}
+\numberwithin{equation}{section}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\linespread{1.2}
+\newcommand{\M}{\mathcal M}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\slsh}[1]{\not\!#1}
+\title{SIDIS}
+\author{Caiyi, Jiang}
+\date{}
+\begin{document}
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+\clearpage
+
+\section{Factorization notes}
+\label{sec:factorization-notes}
+Based on Sec.~2.4 of Zhite Yu's thesis,
+\href{https://arxiv.org/abs/2308.13080}{arXiv:2308.13080v1}
+\subsection{Basic concepts}
+\label{sec:factorization-foundations}
+\subsubsection{Sudakov form factor}
+The form factor describes QCD corrections to the quark electromagnetic vertex:
+\begin{equation}
+ \langle q(k')|j_{\rm em}^\mu|q(k)\rangle
+ =e_a\bar u(k')\gamma^\mu u(k)F(Q^2),\qquad Q^2=-(k'-k)^2.
+\end{equation}
+Here $e_a$ is the fractional charge and $F=1$ at tree level.
+
+\subsubsection{Pinch surfaces}
+A pinch occurs when poles trap a loop integration contour. For example,
+\begin{equation}
+ I(a,b)=\int_{-\infty}^{\infty}
+ \frac{dk^0}{(k^0-a+\ii0)(k^0-b-\ii0)}
+\end{equation}
+has poles below and above the real axis. They pinch the contour as $a\to b$.
+In several dimensions, the trapped momentum configurations form a pinch
+surface. \textbf{Nearby regions can give long-distance contributions.}
+\subsubsection{Collinear and hard subgraphs}
+A subgraph is a connected set of lines and vertices. In this example,
+\begin{equation}
+ \underbrace{C_q}_{+z\text{ collinear}}\longleftrightarrow
+ \underbrace{H}_{\text{hard}}\longleftrightarrow
+ \underbrace{C_{\bar q}}_{-z\text{ collinear}}.
+\end{equation}
+
+In $C_q$ and $C_{\bar q}$, momenta point nearly in the same direction
+and have small virtualities. In $H$, internal virtualities are of order
+$Q^2$. 
+\textbf{Each $C$ joins $H$ through one fermion and possibly many gluons.}
+
+All collinear propagators, including those next to $H$, belong to $C$.
+For example,
+\begin{equation}
+ C_{q,\alpha}(k)=B_\beta(k)
+ \left[\frac{\ii(\slsh k+m)}{k^2-m^2+\ii0}\right]_{\beta\alpha},
+ \qquad
+ \mathcal A=\int\frac{d^4k}{(2\pi)^4}C_{q,\alpha}(k)H_\alpha(k).
+\end{equation}
+$B_\beta(k)$ is the rest of the collinear quark subgraph before attaching the propagator that connects it to the hard subgraph.
+Thus $H$ has no extra connecting quark propagator. 
+For gluons, the scalar propagator factor belongs to $C$.
+
+\subsubsection{Light-cone components and virtuality}
+Use $g=\operatorname{diag}(1,-1,-1,-1)$ and $c=1$. Then
+\begin{align}
+ k^\mu&=(k^0,k^1,k^2,k^3)=(E,k_x,k_y,k_z),\\
+ k^\pm&=\frac{k^0\pm k^3}{\sqrt2},\qquad
+ k^0=\frac{k^++k^-}{\sqrt2},\quad k^3=\frac{k^+-k^-}{\sqrt2},\\
+ k^2&=2k^+k^--\bm k_T^2,\qquad
+ k\cdot l=k^+l^-+k^-l^+-\bm k_T\cdot\bm l_T.
+\end{align}
+An on-shell particle has $k^2=m^2$; its off-shellness is $k^2-m^2$.
+For a massless line, the virtuality is $k^2$; its size is $|k^2|$.
+The SIDIS photon has $q^2=-Q^2$.
+
+\textbf{1. Large component: motion near $+z$.}
+\begin{equation}
+ k^0\simeq k^3>0
+ \quad\Rightarrow\quad
+ k^+=\frac{k^0+k^3}{\sqrt2}\sim Q,
+ \qquad k^-=\frac{k^0-k^3}{\sqrt2}\ll Q.
+\end{equation}
+
+\textbf{2. Small angle: small transverse momentum.}
+\begin{equation}
+ |\bm k_T|\sim\lambda\ll Q,
+ \qquad \theta\simeq\frac{|\bm k_T|}{|k^3|}
+ \sim\frac{\lambda}{Q}\ll1.
+\end{equation}
+
+\textbf{3. Small virtuality: solve for the minus component.}
+\begin{align}
+ k^2&=2k^+k^--\bm k_T^2=O(\lambda^2),\\
+ 2k^+k^-&=\underbrace{k^2}_{O(\lambda^2)}
+          +\underbrace{\bm k_T^2}_{O(\lambda^2)},\\
+ k^-&=\frac{k^2+\bm k_T^2}{2k^+}
+ \sim\frac{\lambda^2}{Q}.
+\end{align}
+This gives $k^+\gg|\bm k_T|\gg k^-$ for typical collinear momenta.
+
+\textbf{4. Motion near $-z$: exchange plus and minus.}
+\begin{align}
+ l^0\simeq-l^3>0
+ &\quad\Rightarrow\quad l^-=\frac{l^0-l^3}{\sqrt2}\sim Q,\\
+ |\bm l_T|\sim\lambda,\quad l^2=O(\lambda^2)
+ &\quad\Rightarrow\quad
+ l^+=\frac{l^2+\bm l_T^2}{2l^-}\sim\frac{\lambda^2}{Q}.
+\end{align}
+Thus, in the order $(+,-,T)$, source Eq.~(2.56) gives
+\begin{equation}
+ \boxed{k_i\sim(Q,\lambda^2/Q,\lambda),\qquad
+ l_j\sim(\lambda^2/Q,Q,\lambda).}
+ \label{eq:notes-collinear-scaling}
+\end{equation}
+The order is $(+,-,T)$; $i=q,1,\ldots,n$ and $j=\bar q,1,\ldots,m$.
+$\lambda$ has units of momentum, and $\lambda/Q\ll1$.
+
+
+\subsubsection{Why extra gluons matter}
+More gluons mean higher orders in the coupling, but not always extra
+powers of $\lambda/Q$. \textbf{Longitudinal gluon contractions can remain leading.}
+These are internal gauge-field components, not extra physical gluon helicities.
+
+
+\subsubsection{Ward identity}
+\label{sec:notes-ward-identity}
+A Ward identity relates a gauge-boson momentum contraction to differences
+of inverse propagators. Start with the tree-level vector vertex.
+
+\textbf{1. Contract the vertex with the momentum.}
+For a fermion that absorbs momentum $k$, $p'=p+k$. Then
+\begin{equation}
+ k_\mu\gamma^\mu=\slsh k
+ =(\slsh p'-m)-(\slsh p-m).
+\end{equation}
+For on-shell external spinors, the Dirac equations give
+\begin{align}
+ \bar u(p')(\slsh p'-m)&=0,\qquad
+ (\slsh p-m)u(p)=0,\\
+ k_\mu J^\mu
+ &=\bar u(p')\bigl[(\slsh p'-m)-(\slsh p-m)\bigr]u(p)
+ =0,
+ \qquad J^\mu=\bar u(p')\gamma^\mu u(p).
+\end{align}
+Thus this current is unchanged in the amplitude when the photon
+polarization is shifted by a multiple of its momentum.
+
+\textbf{2. Insert the contracted vertex on an internal line.}
+To show the algebra, omit factors of $\ii$ and pole prescriptions and set
+\begin{equation}
+ S_0(p)=(\slsh p-m)^{-1},\qquad
+ \slsh k=S_0^{-1}(p+k)-S_0^{-1}(p).
+\end{equation}
+Multiplication on both sides gives
+\begin{align}
+ S_0(p+k)\slsh k S_0(p)
+ &=S_0(p+k)
+ \bigl[S_0^{-1}(p+k)-S_0^{-1}(p)\bigr]S_0(p)\\
+ &=\boxed{S_0(p)-S_0(p+k)}.
+\end{align}
+The momentum insertion removes one adjacent propagator in each term.
+When all allowed attachments are summed, such differences cancel between
+neighbouring terms and leave endpoint terms.
+
+\textbf{3. Use it in factorization.}
+The projections below turn gluon connections into
+\begin{equation}
+ \hat k^\nu H_\nu
+ \qquad\text{or}\qquad
+ \hat k_s^\mu C_\mu.
+\end{equation}
+These are momentum contractions of the same type. In QCD the full
+identity also involves color and gluon self-interactions, so the required
+diagram sums must be included. The remaining attachments form Wilson
+lines; an individual diagram need not vanish.
+
+\subsection{Collinear-to-hard approximation: Sec.~2.4.1}
+\label{sec:notes-collinear-hard}
+\subsubsection{The original connection: source Eq.~(2.55)}
+Write $k_q$ and $l_{\bar q}$ for the connecting fermion momenta.
+The source uses both $k_{\bar q}$ and $l_{\bar q}$ for the latter.
+With indices mostly suppressed,
+\begin{equation}
+ C_q\otimes H\otimes C_{\bar q}
+ =\int[d k][d l]\;C_q(\{k\})
+ \left(\prod_i g^{\mu_i\nu_i}\right)H(\{k\};\{l\})
+ \left(\prod_jg^{\sigma_j\rho_j}\right)C_{\bar q}(\{l\}),
+\end{equation}
+where
+\begin{equation}
+ \int[d k][d l]=\int\frac{d^4k_q\,d^4l_{\bar q}}{(2\pi)^8}
+ \prod_{i=1}^{n}\frac{d^4k_i}{(2\pi)^4}
+ \prod_{j=1}^{m}\frac{d^4l_j}{(2\pi)^4}.
+\end{equation}
+\textbf{$\otimes$ :both integration and index contraction.}
+
+
+\subsubsection{Momentum projection: source Eqs.~(2.57)--(2.59)}
+Define the lightlike vectors
+\begin{align}
+ n^\mu&=(1,0,0,-1)/\sqrt2,\qquad
+ \bar n^\mu=(1,0,0,1)/\sqrt2,\\
+ n^2&=\bar n^2=0,\qquad n\cdot\bar n=1,\qquad
+ k\cdot n=k^+,\quad k\cdot\bar n=k^-.
+\end{align}
+Then $k^\mu=k^+\bar n^\mu+k^-n^\mu+k_T^\mu$.
+The hard part is expanded in small components:
+\begin{align}
+ H(\{k\};\{l\})&\longmapsto H(\{\hat k\};\{\hat l\}),\\
+ \hat k_i^\mu&=(k_i^+,0,\bm0_T)=(k_i\cdot n)\bar n^\mu,\\
+ \hat l_j^\mu&=(0,l_j^-,\bm0_T)=(l_j\cdot\bar n)n^\mu.
+\end{align}
+Hard propagators are not pinched in this region. After suitable contour
+deformations, they have virtualities $O(Q^2)$ and can be expanded.
+For example,
+\begin{equation}
+ (k+l)^2=2k^+l^-+O(\lambda^2),\qquad 2k^+l^-=O(Q^2).
+\end{equation}
+In a collinear denominator, however, $2k^+k^-$ and $\bm k_T^2$
+are both $O(\lambda^2)$ and must be kept. Thus
+$C_q(k)H(k)\to C_q(k)H(\hat k)$, while $C_q$ retains the full $k$.
+The projected momenta obey $\hat k^2=\hat l^2=0$.
+
+\subsubsection{Spin projection: source Eqs.~(2.60)--(2.63)}
+The leading quark spin components are selected by a projector. With
+$\gamma^\pm=(\gamma^0\pm\gamma^3)/\sqrt2$,
+\begin{equation}
+ (\gamma^\pm)^2=0,\quad\{\gamma^+,\gamma^-\}=2,\quad
+ \slsh n=\gamma^+,\quad\slsh{\hat k}=k^+\gamma^-.
+\end{equation}
+Using the massless spin sum,
+\begin{equation}
+ \mathcal P
+ =\frac{\slsh n\sum_su_s(\hat k)\bar u_s(\hat k)}{2\hat k\cdot n}
+ =\frac{\gamma^+k^+\gamma^-}{2k^+}
+ =\boxed{\frac{\gamma^+\gamma^-}{2}}.
+\end{equation}
+This sum defines a projector, not a spin average. Check
+\begin{align}
+ \mathcal P^2&=\tfrac14\gamma^+(2-\gamma^+\gamma^-)\gamma^-
+ =\mathcal P,\qquad \mathcal P\slsh{\hat k}=0,\\
+ \bar u(\hat k)\mathcal P
+ &=\tfrac12\bar u(\hat k)(2-\gamma^-\gamma^+)=\bar u(\hat k).
+\end{align}
+The last step uses $\bar u(\hat k)\gamma^-=0$.
+The leading numerator $k^+\gamma^-$ is kept because
+\begin{equation}
+ (k^+\gamma^-)\mathcal P
+ =\tfrac{k^+}{2}\gamma^-\gamma^+\gamma^-=k^+\gamma^-.
+\end{equation}
+On the other side,
+\begin{equation}
+ \overline{\mathcal P}
+ =\frac{\slsh{\hat l}\slsh{\bar n}}{2\hat l\cdot\bar n}
+ =\frac{l^-\gamma^+\gamma^-}{2l^-}=\mathcal P.
+\end{equation}
+The massless antiquark spin sum also equals $\slsh{\hat l}$.
+The matrix is the same, but it acts on the other side:
+\begin{equation}
+ C_qHC_{\bar q}\simeq
+ C_q\mathcal P H(\{\hat k\};\{\hat l\})
+ \overline{\mathcal P}C_{\bar q}.
+\end{equation}
+With all indices and integration measures shown, source Eq.~(2.63) is
+\begin{equation}
+\begin{aligned}
+ &C_q\otimes H\otimes C_{\bar q}\\
+ &\simeq\int
+ \frac{d^4k_q}{(2\pi)^4}\frac{d^4l_{\bar q}}{(2\pi)^4}
+ \left[\prod_{i=1}^{n}\frac{d^4k_i}{(2\pi)^4}\right]
+ \left[\prod_{j=1}^{m}\frac{d^4l_j}{(2\pi)^4}\right]\\
+ &\quad\times C_{q,\alpha,\mu_1\cdots\mu_n}
+ (k_q,k_1,\ldots,k_n)\,
+ g^{\mu_1\nu_1}\cdots g^{\mu_n\nu_n}\\
+ &\quad\times\mathcal P_{\alpha\delta}
+ H_{\delta,\nu_1\cdots\nu_n;\kappa,\sigma_1\cdots\sigma_m}
+ \bigl(\hat k_q,\hat k_1,\ldots,\hat k_n;\\
+ &\hspace{5em}\hat l_{\bar q},\hat l_1,\ldots,\hat l_m\bigr)
+ \overline{\mathcal P}_{\kappa\beta}\\
+ &\quad\times g^{\sigma_1\rho_1}\cdots g^{\sigma_m\rho_m}
+ C_{\bar q,\beta,\rho_1\cdots\rho_m}
+ (l_{\bar q},l_1,\ldots,l_m).
+\end{aligned}
+\label{eq:notes-full-projected-hard}
+\end{equation}
+Here $\overline{\mathcal P}=\mathcal P$; we use $l_{\bar q}$
+consistently for the antiquark momentum.
+The connecting fermion legs of $H$ are amputated and use on-shell
+spinors. Internal lines in $C$ still retain their virtualities.
+
+\subsubsection{Gluon projection: source Eqs.~(2.64)--(2.65)}
+Start with the exact identity
+\begin{equation}
+ g^{\mu\nu}=n^\mu\bar n^\nu+\bar n^\mu n^\nu+g_T^{\mu\nu}.
+\end{equation}
+For an extra $+z$ collinear gluon, power counting selects
+$(C\cdot n)(\bar n\cdot H)=C^+H^-$ at leading power.
+Since $\hat k^\nu=(k\cdot n)\bar n^\nu$,
+\begin{equation}
+ \boxed{g^{\mu\nu}\longmapsto n^\mu\bar n^\nu
+ =\frac{n^\mu\hat k^\nu}{k\cdot n}.}
+ \label{eq:notes-gluon-hard}
+\end{equation}
+The arrow is an approximation; the equality is exact. Thus
+\begin{equation}
+ C_\mu g^{\mu\nu}H_\nu\simeq
+ \frac{C\cdot n}{k\cdot n}\,\hat k^\nu H_\nu.
+\end{equation}
+On the opposite side,
+\begin{equation}
+ g^{\sigma\rho}\longmapsto
+ \frac{\hat l^\sigma\bar n^\rho}{l\cdot\bar n}.
+\end{equation}
+For all gluons, set $\mathcal H=\mathcal P H(\hat k,\hat l)
+\overline{\mathcal P}$ and write, with indices understood,
+\begin{align}
+ C_q\otimes H\otimes C_{\bar q}\simeq\int[d k][d l]\;&
+ C_q\prod_i\frac{n^{\mu_i}}{k_i\cdot n}
+ \left(\prod_i\hat k_i^{\nu_i}\right)\mathcal H\notag\\
+ &\times\left(\prod_j\hat l_j^{\sigma_j}\right)
+ \prod_j\frac{\bar n^{\rho_j}}{l_j\cdot\bar n}C_{\bar q}.
+\end{align}
+Each gluon now contracts $H$ with its momentum. This is the form needed
+for Ward identities on the hard part.
+
+\subsection{Soft-to-collinear approximation: Sec.~2.4.2}
+\label{sec:notes-soft-collinear}
+\subsubsection{Expand the denominator: source Eq.~(2.66)}
+A uniformly soft momentum has $k_s\sim(\lambda_S,\lambda_S,\lambda_S)$,
+with $\lambda_S\ll Q$. It can be dropped inside $H$ at leading power,
+but can change a small collinear denominator:
+\begin{align}
+ (k_i+k_s)^2-m^2&=(k_i^2-m^2)+2k_i\cdot k_s+k_s^2,\\
+ 2k_i\cdot k_s&=2k_i^+k_s^-+2k_i^-k_s^+
+ -2\bm k_{iT}\cdot\bm k_{sT}.
+\end{align}
+For a $+z$ collinear momentum, the four soft-dependent terms have sizes
+\begin{equation}
+ Q\lambda_S,\qquad \lambda^2\lambda_S/Q,\qquad
+ \lambda\lambda_S,\qquad\lambda_S^2,
+\end{equation}
+respectively. The first is largest, so
+\begin{equation}
+ \boxed{(k_i+k_s)^2-m^2+\ii0
+ \simeq(k_i^2-m^2)+2k_i^+k_s^-+\ii0.}
+\end{equation}
+The numerator is led by $k_i^+\gamma^-=O(Q)$; the added soft term is
+only $O(\lambda_S)$. Soft momentum can therefore be dropped in the
+leading numerator, but must be kept in the denominator.
+
+\subsubsection{Keep one soft component: source Eqs.~(2.67)--(2.69)}
+Only $k_s^-$ is needed inside $C_q$. For $C_{\bar q}$, the leading term
+is $2l^-k_s^+$, so keep $k_s^+$:
+\begin{align}
+ \hat k_{qs}^\mu&=(0,k_{qs}^-,\bm0_T)=(k_{qs}\cdot\bar n)n^\mu,\\
+ \hat k_{\bar qs}^\mu&=(k_{\bar qs}^+,0,\bm0_T)
+ =(k_{\bar qs}\cdot n)\bar n^\mu.
+\end{align}
+The original collinear virtuality is kept over the range
+$\lambda^2/Q\lesssim\lambda_S\lesssim\lambda$.
+At its lower end, $Q\lambda_S\sim\lambda^2$, so it is as important as
+the soft shift. Keeping both gives one approximation across this range.
+
+The soft connection is schematically
+\begin{equation}
+ \int[d k_s]\;C_q(\{\hat k_{qs}\})\,g\,
+ S(\{k_{qs}\};\{k_{\bar qs}\})\,g\,
+ C_{\bar q}(\{\hat k_{\bar qs}\}),
+\end{equation}
+where $[d k_s]$ includes $d^4k_s/(2\pi)^4$ for each connection.
+$S$ includes soft propagators and momentum constraints and keeps its
+full soft arguments. The full collinear arguments of $C$ are also kept,
+but are not shown here.
+
+\subsubsection{Project the gluon indices: source Eqs.~(2.70)--(2.71)}
+This time place the momentum factor on the collinear end:
+\begin{align}
+ g^{\mu\nu}&\longmapsto
+ \frac{\hat k_{qs}^\mu\bar n^\nu}{k_{qs}\cdot\bar n},\\
+ g^{\sigma\rho}&\longmapsto
+ \frac{n^\sigma\hat k_{\bar qs}^\rho}{n\cdot k_{\bar qs}}.
+\end{align}
+Both expressions equal the selected $n\bar n$ term. For example,
+\begin{equation}
+ C_{q,\mu}g^{\mu\nu}S_\nu\simeq
+ (\hat k_{qs}^\mu C_{q,\mu})
+ \frac{\bar n^\nu S_\nu}{k_{qs}\cdot\bar n}.
+\end{equation}
+For all soft connections, source Eq.~(2.71) reads
+\begin{equation}
+\begin{aligned}
+ &C_q\otimes S\otimes C_{\bar q}\\
+ &\simeq\int
+ \left[\prod_{i=1}^{n}\frac{d^4k_{qs,i}}{(2\pi)^4}\right]
+ \left[\prod_{j=1}^{m}\frac{d^4k_{\bar qs,j}}{(2\pi)^4}\right]\\
+ &\quad\times C_{q;\mu_1\cdots\mu_n}
+ (\{\hat k_{qs,i}\})
+ \left(\prod_{i=1}^{n}\hat k_{qs,i}^{\mu_i}\right)\\
+ &\quad\times\left[\prod_{i=1}^{n}
+ \frac{\bar n^{\nu_i}}{k_{qs,i}\cdot\bar n}\right]
+ S_{\nu_1\cdots\nu_n;\sigma_1\cdots\sigma_m}
+ \bigl(\{k_{qs,i}\},\{k_{\bar qs,j}\}\bigr)\\
+ &\quad\times\left[\prod_{j=1}^{m}
+ \frac{n^{\sigma_j}}{n\cdot k_{\bar qs,j}}\right]
+ \left(\prod_{j=1}^{m}\hat k_{\bar qs,j}^{\rho_j}\right)
+ C_{\bar q;\rho_1\cdots\rho_m}(\{\hat k_{\bar qs,j}\}).
+\end{aligned}
+\label{eq:notes-full-soft-connections}
+\end{equation}
+Ward identities now act on the collinear factors. The pole prescriptions
+of the later Wilson-line factors need the full derivation.
+
+\subsection{Link to the SIDIS calculation}
+The two approximations give
+\begin{equation}
+ \begin{array}{c|c|c}
+ \text{connection}&\text{momentum contraction}&\text{Ward identity on}\\\hline
+ \text{collinear to hard}&\hat k^\nu H_\nu&H\\
+ \text{soft to collinear}&\hat k_s^\mu C_\mu&C
+ \end{array}
+\end{equation}
+Sec.~2.4 prepares these identities. A full proof also needs diagram sums,
+Wilson lines, and overlap subtractions. Other regions, including Glauber
+momenta, need further analysis.
+For SIDIS, $ea\to ea$ gives the tree-level hard part; PDFs and FFs
+describe the initial and final collinear dynamics after factorization.
+
+\clearpage
+\section{Single-hadron SIDIS}
+\label{sec:single-hadron}
+Apply the approximations of Section~\ref{sec:factorization-notes}
+to $ep\to ehX$. Keep the leading power and the tree-level hard part.
+\begin{equation}
+ \text{process and variables}\ \longrightarrow\
+ \text{projected hard part}\ \longrightarrow\
+ \text{PDF and FF}.
+\end{equation}
+
+\subsection{Process and kinematics}
+\label{sec:kinematics}
+Consider unpolarized single-hadron SIDIS:
+\begin{equation}
+ e^-(\ell)+p(P)\longrightarrow e^-(\ell')+h(P_h)+X.
+ \label{eq:process}
+\end{equation}
+\begin{itemize}
+ \item $\ell,\ell'$: incoming and scattered electron four-momenta.
+ \item $P$: proton four-momentum; $P^2=M^2$.
+ \item $P_h$: observed hadron four-momentum.
+ \item $X$: all unobserved final particles.
+\end{itemize}
+Use $g^{\mu\nu}=\operatorname{diag}(1,-1,-1,-1)$ and neglect $m_e$.
+Define the photon momentum and its virtuality:
+\begin{equation}
+ \boxed{q=\ell-\ell',\qquad Q^2=-q^2>0.}
+ \label{eq:transfer}
+\end{equation}
+Define the measured variables:
+\begin{equation}
+ \boxed{x_B=\frac{Q^2}{2P\cdot q},\qquad
+ y=\frac{P\cdot q}{P\cdot\ell},\qquad
+ z=\frac{P\cdot P_h}{P\cdot q}.}
+ \label{eq:variables}
+\end{equation}
+\begin{itemize}
+ \item $Q$: hard scale; require $Q\gg\Lambda_{\rm QCD}$.
+ \item $x_B$: Bjorken variable, fixed by electron kinematics.
+ At tree level and leading power, it equals the incoming parton fraction.
+ \item $y$: fraction of the electron energy transferred to the hadron system,
+ in the proton rest frame.
+ \item $z$: observed hadron energy divided by the transferred energy,
+ in the proton rest frame.
+\end{itemize}
+
+
+\subsubsection{In the proton rest frame}
+Choose the incoming electron along $+z$:
+\begin{align}
+ P&=(M,0,0,0),\qquad \ell=(E,0,0,E),\\
+ \ell'&=(E',E'\sin\theta,0,E'\cos\theta),\qquad
+ P_h=(E_h,\bm P_h).
+\end{align}
+Set $\nu=E-E'$:
+\begin{equation}
+ P\cdot q=M\nu,\qquad P\cdot\ell=ME,\qquad P\cdot P_h=ME_h.
+\end{equation}
+\begin{equation}
+  \boxed{x_B=\frac{Q^2}{2M\nu},\qquad
+ y=\frac{E-E'}{E},\qquad z=\frac{E_h}{E-E'}}.
+\end{equation}
+Use $\ell^2=\ell'^2=0$ to obtain
+\begin{align}
+ Q^2&=-(\ell-\ell')^2=2\ell\cdot\ell'\\
+ &=2EE'(1-\cos\theta)
+ =4EE'\sin^2\frac{\theta}{2}.
+ \label{eq:virtuality}
+\end{align}
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.70\textwidth]{figures/sidis_momentum_triangle.png}
+ \caption{Three-momentum relation: $\bm q=\bm\ell-\bm\ell'$.}
+ \label{fig:triangle}
+\end{figure}
+
+\subsection{The projected tree-level hard part}
+\label{sec:hard-scattering}
+\textbf{Identify the subgraphs as in Section~\ref{sec:factorization-foundations}.}
+\begin{equation}
+ \underbrace{C_{\rm in}}_{\text{proton direction}}
+ \longleftrightarrow H\longleftrightarrow
+ \underbrace{C_{\rm out}}_{\text{observed-hadron direction}}.
+\end{equation}
+\begin{itemize}
+ \item $C_{\rm in}$: the initial collinear subgraph in the proton.
+ \item $H$: the photon vertex; include the electron current in its hard coefficient.
+ \item $C_{\rm out}$: the final collinear subgraph containing $h$ and other particles.
+ \item Assign the connecting collinear propagators to $C$, as in Section 1.
+\end{itemize}
+
+\subsubsection{Momentum and spin projections}
+Use a fast frame with the proton along $+z$ and the current jet along $-z$.
+Use the same $n,\bar n$ as in Sec.~\ref{sec:notes-collinear-hard}:
+\begin{align}
+ k&\sim(Q,\lambda^2/Q,\lambda),&
+ r&\sim(\lambda^2/Q,Q,\lambda),\\
+ \hat k&=(k^+,0,\bm0_T),&
+ \hat r&=(0,r^-,\bm0_T).
+\end{align}
+Apply the approximation \textbf{only to the hard part}:
+\begin{equation}
+ C_{\rm in}(k)H(k,r)C_{\rm out}(r)
+ \longmapsto
+ C_{\rm in}(k)H(\hat k,\hat r)C_{\rm out}(r).
+\end{equation}
+This equation shows the momentum dependence only; spin and gluon
+connections are treated as in Section 1.
+\begin{align}
+ \mathcal P&=\frac{\gamma^+\gamma^-}{2},&
+ \sum_su_s(\hat k)\bar u_s(\hat k)&=\slsh{\hat k},\\
+ \hat k^2&=\hat r^2=0,&
+ \slsh{\hat k}&=k^+\gamma^-,\quad
+ \slsh{\hat r}=r^-\gamma^+.
+\end{align}
+\begin{itemize}
+ \item Use $\mathcal P$ on the appropriate hard-facing Dirac index,
+ as in Section 1. Extract the on-shell spinors in $H$.
+ \item \textbf{Do not confuse the leading-component projector with a spin average.}
+ Average the external spins only when forming the unpolarized hard coefficient.
+ \item In the calculation below, write $k=\hat k$, $k'=\hat r$ for brevity.
+ Thus $k^2=k'^2=0$ applies to the hard part, not to every line in the proton.
+\end{itemize}
+The hard process is
+\begin{equation}
+ e^-(\ell)+a(k)\longrightarrow e^-(\ell')+a(k'),\qquad
+ q=\ell-\ell'=k'-k.
+\end{equation}
+\begin{itemize}
+ \item $a$: a quark flavor; \textbf{$e_u=2/3$, $e_d=-1/3$.}
+ \item Neglect $m_e$ and the quark mass in the hard part.
+ \item Sum over final spins and color. Average over initial spins and quark color.
+\end{itemize}
+
+
+\subsubsection{Partonic invariants}
+Use momentum conservation and the massless on-shell conditions:
+\begin{align}
+ \ell+k&=\ell'+k',\qquad
+ \ell^2=\ell'^2=k^2=k'^2=0,\\
+ \hat s&=(\ell+k)^2=2\ell\cdot k=2\ell'\cdot k',\\
+ \hat t&=(\ell-\ell')^2=-2\ell\cdot\ell'=-2k\cdot k'=-Q^2,\\
+ \hat u&=(\ell-k')^2=-2\ell\cdot k'=-2\ell'\cdot k.
+ \label{eq:hard-dot-products}
+\end{align}
+\begin{equation}
+ \hat s+\hat t+\hat u
+ =2\ell\cdot(k-\ell'-k')=-2\ell^2=0.
+ \label{eq:hard-mandelstam}
+\end{equation}
+
+\subsubsection{The amplitude and current conservation}
+Take $e>0$. Use charges $-e$ and $ee_a$:
+\begin{align}
+ \ii\M={}&
+ [\bar u(\ell')(+\ii e\gamma^\mu)u(\ell)]
+ \frac{-\ii g_{\mu\nu}}{q^2}
+ [\bar u(k')(-\ii ee_a\gamma^\nu)u(k)]\\
+ ={}&-\frac{\ii e^2e_a}{q^2}
+ [\bar u(\ell')\gamma^\mu u(\ell)]
+ [\bar u(k')\gamma_\mu u(k)].
+\end{align}
+Remove the overall $\ii$ and use $q^2=-Q^2$:
+\begin{equation}
+ \boxed{\M=\frac{e^2e_a}{Q^2}
+ [\bar u(\ell')\gamma^\mu u(\ell)]
+ [\bar u(k')\gamma_\mu u(k)].}
+ \label{eq:hard-amplitude}
+\end{equation}
+Keep the color factor separate: $\M_{c'c}=\delta_{c'c}\M$.
+
+Check the tree-level identity from Sec.~\ref{sec:notes-ward-identity}:
+\begin{align}
+ q_\mu J_e^\mu
+ &=\bar u(\ell')(\slsh\ell-\slsh{\ell'})u(\ell)=0,\\
+ q_\mu J_a^\mu
+ &=\bar u(k')(\slsh{k'}-\slsh k)u(k)=0.
+\end{align}
+Use the massless Dirac equations. Both currents are conserved.
+
+\subsubsection{Spin sums and color}
+Use
+\begin{equation}
+ \sum_su(p,s)\bar u(p,s)=\slsh p.
+\end{equation}
+For example, sum the electron spins:
+\begin{align}
+ &\sum_{s,s'}[\bar u(\ell',s')\gamma^\mu u(\ell,s)]
+ [\bar u(\ell,s)\gamma^\nu u(\ell',s')]\notag\\
+ &\qquad=\operatorname{Tr}
+ [\slsh{\ell'}\gamma^\mu\slsh\ell\gamma^\nu]
+ \equiv L_e^{\mu\nu}.
+ \label{eq:hard-current-trace}
+\end{align}
+Do the same for the quark:
+\begin{equation}
+ L^{(a)}_{\mu\nu}
+ =\operatorname{Tr}[\slsh{k'}\gamma_\mu\slsh k\gamma_\nu].
+\end{equation}
+Include the averages:
+\begin{equation}
+ \underbrace{\frac12\frac12}_{\text{initial spins}}=\frac14,
+ \qquad
+ \underbrace{\frac1{N_c}\sum_{c,c'}|\delta_{c'c}|^2}_{\text{color}}=1.
+\end{equation}
+Hence
+\begin{equation}
+ \boxed{\overline{|\M|^2}
+ =\frac{e^4e_a^2}{4Q^4}L_e^{\mu\nu}L^{(a)}_{\mu\nu}.}
+ \label{eq:hard-trace-start}
+\end{equation}
+\textbf{The photon preserves the active quark color; $N_c=3$ in QCD.}
+
+\subsubsection{Trace contraction}
+Apply
+\begin{equation}
+ \operatorname{Tr}(\gamma^\alpha\gamma^\mu\gamma^\beta\gamma^\nu)
+ =4(g^{\alpha\mu}g^{\beta\nu}-g^{\alpha\beta}g^{\mu\nu}
+ +g^{\alpha\nu}g^{\mu\beta}).
+\end{equation}
+Obtain
+\begin{align}
+ L_e^{\mu\nu}
+ &=4[\ell'^\mu\ell^\nu+\ell'^\nu\ell^\mu
+ -g^{\mu\nu}(\ell'\cdot\ell)],
+ \label{eq:hard-electron-trace}\\
+ L^{(a)}_{\mu\nu}
+ &=4[k'_\mu k_\nu+k'_\nu k_\mu-g_{\mu\nu}(k'\cdot k)].
+ \label{eq:hard-quark-trace}
+\end{align}
+Set $c=\ell'\cdot\ell$ and $d=k'\cdot k$. Expand the product:
+\begin{align}
+ \frac{L_e^{\mu\nu}L^{(a)}_{\mu\nu}}{16}
+ ={}& (\ell'\cdot k')(\ell\cdot k)
+ +(\ell'\cdot k)(\ell\cdot k')\notag\\
+ &+(\ell'\cdot k)(\ell\cdot k')
+ +(\ell'\cdot k')(\ell\cdot k)\notag\\
+ &-2cd-2cd+4cd\\
+ ={}&2[(\ell'\cdot k')(\ell\cdot k)
+ +(\ell'\cdot k)(\ell\cdot k')].
+ \label{eq:hard-tensor-contraction}
+\end{align}
+The metric terms cancel because $g^{\mu\nu}g_{\mu\nu}=4$.
+Insert the result:
+\begin{align}
+ \overline{|\M|^2}
+ &=\frac{8e^4e_a^2}{Q^4}
+ [(\ell'\cdot k')(\ell\cdot k)
+ +(\ell'\cdot k)(\ell\cdot k')]
+ \label{eq:hard-dot-result}\\
+ &=\frac{8e^4e_a^2}{Q^4}
+ \left(\frac{\hat s^2}{4}+\frac{\hat u^2}{4}\right)\\
+ &=\boxed{2e^4e_a^2\frac{\hat s^2+\hat u^2}{\hat t^2}}.
+ \label{eq:hard-mandelstam-result}
+\end{align}
+
+\subsubsection{Flux and two-body phase space}
+Use the massless incident flux $4\ell\cdot k=2\hat s$:
+\begin{equation}
+ d\hat\sigma=\frac{\overline{|\M|^2}}{2\hat s}\,d\Phi_2,
+\end{equation}
+where
+\begin{equation}
+ d\Phi_2=(2\pi)^4\delta^{(4)}(\ell+k-\ell'-k')
+ \frac{d^3\bm\ell'}{(2\pi)^3\,2E_{\ell'}}
+ \frac{d^3\bm k'}{(2\pi)^3\,2E_{k'}}.
+ \label{eq:hard-phase-space}
+\end{equation}
+In the partonic centre-of-momentum frame, set $r=|\bm\ell'|=|\bm k'|$.
+Integrate the delta functions:
+\begin{align}
+ d\Phi_2&=\frac{d\Omega}{16\pi^2}
+ \int_0^\infty dr\,\delta(\sqrt{\hat s}-2r)
+ =\frac{d\Omega}{32\pi^2},\\
+ \frac{d\hat\sigma}{d\Omega}
+ &=\frac{\overline{|\M|^2}}{64\pi^2\hat s},\qquad
+ \frac{d\hat\sigma}{d\cos\hat\theta}
+ =\frac{\overline{|\M|^2}}{32\pi\hat s}.
+\end{align}
+Here $\hat\theta$ is the electron angle in this partonic frame.
+It differs from the proton-rest-frame angle $\theta$.
+Use
+\begin{equation}
+ \hat t=-\frac{\hat s}{2}(1-\cos\hat\theta),\qquad
+ \frac{d\hat t}{d\cos\hat\theta}=\frac{\hat s}{2}.
+ \label{eq:hard-cm-invariants}
+\end{equation}
+Change variables and insert the squared amplitude:
+\begin{align}
+ \frac{d\hat\sigma}{d\hat t}
+ &=\frac{\overline{|\M|^2}}{32\pi\hat s}\frac{2}{\hat s}\\
+ &=\boxed{\frac{2\pi\alpha^2e_a^2}{\hat s^2}
+ \frac{\hat s^2+\hat u^2}{\hat t^2}},\qquad
+ \alpha=\frac{e^2}{4\pi}.
+ \label{eq:hard-dsigma-dt}
+\end{align}
+
+\subsubsection{The hard coefficient in \texorpdfstring{$y$}{y}}
+For a collinear incoming parton, use
+\begin{equation}
+ y=\frac{P\cdot q}{P\cdot\ell}
+ \simeq\frac{k\cdot q}{k\cdot\ell}.
+\end{equation}
+Apply $k'=k+q$ and $k'^2=k^2=0$:
+\begin{align}
+ 0&=(k+q)^2=2k\cdot q-Q^2,\\
+ y&=\frac{Q^2}{\hat s}=-\frac{\hat t}{\hat s},\qquad
+ \hat u=-\hat s-\hat t=-\hat s(1-y).
+ \label{eq:hard-y-relations}
+\end{align}
+Then
+\begin{equation}
+ \frac{\hat s^2+\hat u^2}{\hat t^2}
+ =\frac{1+(1-y)^2}{y^2},\qquad
+ \left|\frac{d\hat t}{dy}\right|_{\hat s}=\hat s.
+\end{equation}
+Obtain the hard cross section:
+\begin{align}
+ \frac{d\hat\sigma_a}{dy}
+ &=\frac{d\hat\sigma_a}{d\hat t}\,\hat s\\
+ &=\frac{2\pi\alpha^2e_a^2}{\hat s y^2}[1+(1-y)^2]\\
+ &=\boxed{\frac{2\pi\alpha^2e_a^2}{Q^2y}[1+(1-y)^2]}.
+ \label{eq:hard-dsigma-dy}
+\end{align}
+
+\subsubsection{Color factors}
+Table~\ref{tab:color} collects the color quantum numbers of the four
+particles that enter this calculation.
+
+\begin{table}[H]
+\centering
+\vspace*{2mm}
+\caption{Color of the particles that enter this calculation. Here $N_c=3$ is
+the dimension of the fundamental representation of $\mathrm{SU}(3)$; it is a
+parameter of the theory, not a property of a single particle. What enters an
+average over an initial state is the dimension $d_R$ of the representation
+that the particle carries.}
+\label{tab:color}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+particle & color representation & dimension $d_R$
+& average $1/d_R$ & color factor \\
+\midrule
+photon $\gamma$ & singlet $\mathbf 1$
+  & $1$ & --- & $1$ \\
+proton $p$ & singlet $\mathbf 1$
+  & $1$ & --- & $1$ \\
+quark $q$ & fundamental $\mathbf 3$
+  & $N_c=3$ & $1/N_c=1/3$ & $1$ \\
+gluon $g$ & adjoint $\mathbf 8$
+  & $N_c^2-1=8$ & $1/(N_c^2-1)=1/8$ & $C_F=4/3$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{How to read Table~\ref{tab:color}.}
+\begin{itemize}
+ \item A photon is a color singlet, so its vertex carries no $T^a$ and color
+       space is trivial, $\M_{c'c}=\delta_{c'c}\M$. This is the $\delta_{c'c}$
+       of Eq.~\eqref{eq:hard-amplitude}, and it gives the color factor $1$.
+ \item A proton is a color singlet only after its constituents are combined,
+       $|p\rangle\propto\varepsilon_{ijk}q^iq^jq^k$. Because it is a singlet,
+       the color of the active quark is uniformly distributed,
+       $\langle\bar q_iq_j\rangle\propto\delta_{ij}/N_c$, which is what makes
+       the average $1/N_c$ legitimate. The two singlet rows are not the same
+       statement: the photon carries no color, the proton carries balanced
+       color.
+ \item The entry $1$ is for singlet exchange. If a gluon is exchanged, the
+       vertex is $(T^a)_{c'c}$ and the color factor changes:
+       \begin{equation}
+        \frac{1}{N_c}\sum_{a}\operatorname{tr}(T^aT^a)
+        =\frac{T_F}{N_c}\left(N_c^2-1\right)=C_F=\frac43,
+        \label{eq:color-casimir}
+       \end{equation}
+       with $T_F=\tfrac12$ and $C_A=N_c=3$. Note that $C_A$ and
+       $d_{\text{fund}}$ both coincide numerically with $N_c$ but are
+       different objects. An initial gluon is averaged with
+       $1/(N_c^2-1)=1/8$; for $\gamma^*g\to q\bar q$ the color factor is
+       $T_F=1/2$.
+\end{itemize}
+
+\subsection{The factorized SIDIS cross section}
+\label{sec:sidis-factorization}
+\subsubsection{From subgraphs to PDFs and FFs}
+
+Use the amplitude \textbf{and its conjugate}, and sum over $X$:
+\begin{equation}
+ W^{\mu\nu}\ \propto\ \sum_X
+ \langle P|j^\mu|hX\rangle\langle hX|j^\nu|P\rangle.
+\end{equation}
+The sum includes the final-state phase space and momentum constraint.
+The two collinear factors now become cut matrix elements:
+\begin{equation}
+ \underbrace{\Phi}_{\text{proton matrix element}}
+ \ \otimes\ \underbrace{\mathcal H}_{\text{hard amplitude squared}}
+ \ \otimes\ \underbrace{\Delta}_{\text{fragmentation matrix element}}.
+\end{equation}
+\begin{itemize}
+ \item Project the leading unpolarized Dirac components of $\Phi,\Delta$.
+ Their scalar functions are $f_1,D_1$.
+ \item Keep their low-virtuality dynamics inside these functions.
+ \item Use the calculated $d\hat\sigma_a/dy$ for the hard coefficient.
+\end{itemize}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.9\textwidth]{figures/sidis_factorization.png}
+ \caption{PDF $\otimes$ hard scattering $\otimes$ FF.}
+ \label{fig:sidis}
+\end{figure}
+\begin{itemize}
+ \item \textbf{PDF:} use $f_1^a(\xi,\mu)$ for a parton in the proton.
+ Define the incoming fraction $\xi=k^+/P^+$.
+ \item \textbf{Hard part:} use the calculated $d\hat\sigma_a/dy$.
+ \item \textbf{FF:} use $D_1^{a\to h}(\zeta,\mu)$ for a hadron from
+ the outgoing parton. In a frame with the jet near $-z$, define
+ $\zeta=P_h^-/k'^-$.
+ \item Choose the factorization scale $\mu\sim Q$.
+ Treat the PDF and FF as nonperturbative inputs.
+\end{itemize}
+\textbf{Use the approximations from Section~\ref{sec:factorization-notes}:}
+\begin{enumerate}
+ \item Drop the small collinear components \textbf{only in the hard part}.
+ Use on-shell projected partons; retain low virtualities in the collinear factors.
+ \item Apply Ward identities to the extra longitudinal gluons.
+ Collect their couplings into the gauge links of PDFs and FFs.
+ \item Use the integrated SIDIS factorization theorem for the soft terms.
+ After the required cancellations and overlap treatment, no separate
+ measured soft function appears in this collinear formula.
+\end{enumerate}
+Section~2.4 supplies the local approximations. The full soft cancellation
+and overlap treatment are additional parts of the SIDIS factorization theorem.
+
+
+\subsubsection{Fraction matching}
+\textbf{Incoming fraction.} Use the lightlike projection
+\begin{equation}
+ \hat k^\mu=\xi P^+\bar n^\mu,\qquad\hat k^2=0.
+ \label{eq:sidis-hard-projections}
+\end{equation}
+Write $\hat k\simeq\xi P$ in leading-power scalar products.
+Apply the outgoing on-shell condition:
+\begin{align}
+ 0&=(\hat k+q)^2\simeq2\xi P\cdot q-Q^2\\
+ &=Q^2\left(\frac{\xi}{x_B}-1\right)
+ \quad\Rightarrow\quad \boxed{\xi=x_B}.
+\end{align}
+\textbf{Outgoing fraction.} Use $P_h\simeq\zeta k'$ at leading power:
+\begin{align}
+ z&=\frac{P\cdot P_h}{P\cdot q}
+ \simeq\zeta\frac{P\cdot k'}{P\cdot q}\\
+ &=\zeta\left(1+\frac{P\cdot\hat k}{P\cdot q}\right)
+ \simeq\zeta
+ \quad\Rightarrow\quad \boxed{\zeta=z}.
+\end{align}
+The omitted term gives a target-mass correction. Keep physical hadron
+masses; drop their corrections only in the hard kinematics.
+\begin{equation}
+ \boxed{\xi=x_B,\qquad\zeta=z\quad
+ \text{at tree level and leading power}.}
+ \label{eq:sidis-fraction-matching}
+\end{equation}
+
+\subsubsection{The tree-level convolution}
+Write the tree-level number-density form:
+\begin{align}
+ \frac{d\sigma}{dx_B\,dy\,dz}
+ =\sum_{a=q,\bar q}\int_0^1d\xi\int_0^1d\zeta\;&
+ f_1^a(\xi,\mu)\frac{d\hat\sigma_a(\xi)}{dy}
+ D_1^{a\to h}(\zeta,\mu)\notag\\
+ &\times\delta(x_B-\xi)\delta(z-\zeta).
+ \label{eq:sidis-lo-convolution}
+\end{align}
+Use the delta functions:
+\begin{align}
+ \int_0^1d\xi\,f_1^a(\xi,\mu)
+ \frac{d\hat\sigma_a(\xi)}{dy}\delta(x_B-\xi)
+ &=f_1^a(x_B,\mu)
+ \left.\frac{d\hat\sigma_a}{dy}\right|_{\xi=x_B},\\
+ \int_0^1d\zeta\,D_1^{a\to h}(\zeta,\mu)\delta(z-\zeta)
+ &=D_1^{a\to h}(z,\mu).
+\end{align}
+Therefore
+\begin{equation}
+ \boxed{\frac{d\sigma}{dx_B\,dy\,dz}
+ =\sum_{a=q,\bar q}f_1^a(x_B,\mu)
+ \left.\frac{d\hat\sigma_a}{dy}\right|_{\xi=x_B}
+ D_1^{a\to h}(z,\mu).}
+ \label{eq:sidis-product}
+\end{equation}
+\begin{itemize}
+ \item Sum over quarks and antiquarks. Their unpolarized hard factors
+ have the same form, weighted by $e_a^2$.
+ \item \textbf{Do not repeat the spin or color average.}
+ It is already in $d\hat\sigma_a/dy$.
+ \item The delta functions are specific to this tree-level kinematics.
+ Higher-order radiation gives nontrivial convolutions.
+\end{itemize}
+
+\subsubsection{The SIDIS cross section}
+Use $s=(\ell+P)^2=M^2+2P\cdot\ell$ and check
+\begin{align}
+ \hat s&\simeq\xi(s-M^2),\\
+ Q^2&=2x_BP\cdot q=x_By(s-M^2).
+ \label{eq:sidis-Q2-xy}
+\end{align}
+At $\xi=x_B$, $\hat s y=Q^2$. Insert
+Eq.~\eqref{eq:hard-dsigma-dy} into Eq.~\eqref{eq:sidis-product}:
+\begin{equation}
+ \boxed{\begin{aligned}
+ \frac{d\sigma}{dx_B\,dy\,dz}
+ ={}&\frac{2\pi\alpha^2}{Q^2y}[1+(1-y)^2]\\
+ &\times\sum_{a=q,\bar q}e_a^2
+ f_1^a(x_B,\mu)D_1^{a\to h}(z,\mu).
+ \end{aligned}}
+ \label{eq:sidis-final-lo}
+\end{equation}
+
+
+\subsubsection{Structure functions}
+Use $Y_+=1+(1-y)^2$ and write
+\begin{equation}
+ \frac{d\sigma}{dx_B\,dy\,dz}
+ =\frac{2\pi\alpha^2}{x_ByQ^2}
+ [Y_+F_{UU,T}+2(1-y)F_{UU,L}].
+ \label{eq:sidis-structure-cross-section}
+\end{equation}
+Compare with Eq.~\eqref{eq:sidis-final-lo}:
+\begin{align}
+ F_{UU,T}&=x_B\sum_{a=q,\bar q}e_a^2
+ f_1^a(x_B,\mu)D_1^{a\to h}(z,\mu),\\
+ F_{UU,L}&=0\qquad\text{at tree level}.
+ \label{eq:sidis-structure-lo}
+\end{align}
+
+
+\subsubsection{Change of measured variable}
+At fixed $x_B$ and beam energy, use
+\begin{equation}
+ \left|\frac{dy}{dQ^2}\right|
+ =\frac1{x_B(s-M^2)}=\frac{y}{Q^2}.
+\end{equation}
+Multiply Eq.~\eqref{eq:sidis-final-lo} by this Jacobian:
+\begin{equation}
+ \boxed{\begin{aligned}
+ \frac{d\sigma}{dx_B\,dQ^2\,dz}
+ ={}&\frac{2\pi\alpha^2}{Q^4}[1+(1-y)^2]\\
+ &\times\sum_{a=q,\bar q}e_a^2
+ f_1^a(x_B,\mu)D_1^{a\to h}(z,\mu).
+ \end{aligned}}
+ \label{eq:sidis-Q2-cross-section}
+\end{equation}
+
+\clearpage
+\section{Transverse-spin dihadron SIDIS}
+\label{sec:dihadron}
+Replace the single-hadron final factor by a pair factor, and keep the
+transverse-spin components of the collinear matrix elements.
+\begin{equation}
+ C_{\rm in}(P,S_T)\ \longleftrightarrow\ H
+ \ \longleftrightarrow\ C_{\rm out}(P_h,R).
+\end{equation}
+\begin{itemize}
+ \item $C_{\rm in}$: collinear part of the polarized proton.
+ \item $H$: short-distance electron--quark scattering.
+ \item $C_{\rm out}$: collinear part that forms the hadron pair.
+\end{itemize}
+The momentum approximation is unchanged. The spin projection changes.
+
+\subsection{Process and pair kinematics}
+Consider an unpolarized electron and a transversely polarized proton:
+\begin{equation}
+ e^-(\ell)+p(P,S_T)\longrightarrow
+ e^-(\ell')+h_1(P_1)+h_2(P_2)+X.
+\end{equation}
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.98\textwidth]{figures/dihadron_sidis_selected.png}
+ \caption{Transverse-spin dihadron SIDIS. }
+ \label{fig:dihadron-sidis}
+\end{figure}
+Set $q=\ell-\ell'$, $Q^2=-q^2$, 
+\begin{equation}
+x_B=\frac{Q^2}{2P\cdot q}, \qquad y=\frac{P \cdot q}{P \cdot \ell}
+\end{equation}
+Define
+\begin{align}
+ P_h&=P_1+P_2,\qquad R=\frac{P_1-P_2}{2},\qquad M_h^2=P_h^2,\\
+ z_i&=\frac{P\cdot P_i}{P\cdot q},\qquad
+ z=z_1+z_2=\frac{P\cdot P_h}{P\cdot q}.
+\end{align}
+\begin{itemize}
+ \item $P_h$: total pair momentum; $M_h$: pair invariant mass.
+ \item $R$: relative momentum. 
+ \item $z_i$: transferred-energy fraction carried by hadron $i$.
+\end{itemize}
+
+
+
+\subsubsection{Azimuthal angles}
+For a $\pi^+\pi^-$ pair, set $P_1=P_{\pi^+}$ and $P_2=P_{\pi^-}$. 
+\begin{itemize}
+  \item $\vartheta$: the polar angle of $\pi^+$ in the pair rest frame;$c=\cos\vartheta$. 
+  \item $\phi_R$: the azimuthal angle of the hadrons relative momentum. 
+  \item $\phi_S$: the azimuthal angle of the proton transverse spin.
+\end{itemize}
+At leading power,
+\begin{equation}
+ \begin{aligned}
+ |\bm R_T|&=|\bm R^*|\sqrt{1-c^2}=|\bm R^*|\sin\vartheta,\\
+ |\bm R^*|&=
+ \frac{\sqrt{[M_h^2-(m_1+m_2)^2][M_h^2-(m_1-m_2)^2]}}{2M_h}.
+ \end{aligned}
+\end{equation}
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.8\textwidth]{figures/dihadron_angles.png}
+ \caption{Dihadron SIDIS angles. In this figure, $k,k'$ denote the
+ electron momenta $\ell,\ell'$ of our notation; the inset angle $\theta$
+ is our pair polar angle $\vartheta$.}
+ \label{fig:dihadron-angles}
+\end{figure}
+\begin{itemize}
+ \item View the transverse plane with $+z$ along $\bm q$ and the lepton plane as the reference plane.
+ \item Set $\Phi=\phi_R+\phi_S$.
+\end{itemize}
+
+
+\subsection{The projected tree-level hard part with transverse spins}
+
+Let $\lambda\ll Q$ be a small hadronic momentum scale.
+
+Incoming quark:
+\begin{align}
+ k&=(k^+,k^-,\bm k_T)
+   \sim(Q,\lambda^2/Q,\lambda),&
+ k^2&=2k^+k^- -\bm k_T^2=O(\lambda^2).
+\end{align}
+Here $k^+\sim Q$ is large; $k^-$ and $|\bm k_T|$ are small compared
+with $Q$.
+
+Outgoing quark:
+\begin{align}
+k'&=(k'^+,k'^-,\bm k'_T)
+   \sim(\lambda^2/Q,Q,\lambda),&
+k'^2&=2k'^+k'^- -\bm k_T'^2=O(\lambda^2).
+\end{align}
+It moves along the opposite direction, so $k'^-\sim Q$ is large.
+\textbf{Keep only the large components in $H$:}
+\begin{align}
+ \hat k&=k^+\bar n=(k^+,0,\bm0_T),\\
+ \hat k'&=k'^-n=(0,k'^-,\bm0_T),\\
+ \hat k^2&=\hat k'^2=0,\\
+ C_{\rm in}(k)H(k,k')&C_{\rm out}(k')
+\longmapsto C_{\rm in}(k)H(\hat k,\hat k')C_{\rm out}(k').
+\end{align}
+
+The hard process is
+\begin{equation}
+ e^-(\ell)+a(k)\longrightarrow e^-(\ell')+a(k'),\qquad
+ q=\ell-\ell'=k'-k.
+\end{equation}
+Use the same amplitude:
+\begin{equation}
+  i\M=[\bar u(\ell')\gamma^\mu u(\ell)]-i\frac{e^2e_a}{q^2}[\bar u(k')\gamma_\mu u(k)].
+\end{equation}
+\begin{equation}
+ \M=\frac{e^2e_a}{Q^2}
+ [\bar u(\ell')\gamma^\mu u(\ell)]
+ [\bar u(k')\gamma_\mu u(k)].
+\end{equation}
+\begin{align}
+ \hat s&=(\ell+k)^2=2\ell\cdot k,\\
+ \hat t&=(\ell-\ell')^2=q^2=-Q^2,\\
+ \hat u&=(\ell-k')^2=-2\ell\cdot k'.
+\end{align}
+For the projected massless hard momenta,
+$\hat s+\hat t+\hat u=0$. These variables will enter the spin trace.
+
+
+\subsubsection{Keep the transverse-spin density matrices}
+
+
+Use unit spacelike spin vectors $s,s'$ with
+\begin{equation}
+ s^2=s'^2=-1,\quad s\cdot k=0,\quad s'\cdot k'=0.
+\end{equation}
+Replace the unpolarized density $\rho_U(k)=\slsh k/2$ by
+the massless limit of the transverse-spin density:
+\begin{equation}
+ u(k,s)\bar u(k,s)=\frac12\slsh k(1+\gamma_5\slsh s).
+\end{equation}
+Average only the initial electron spin. Sum only the final electron spin:
+\begin{equation}
+ \overline{|\M|^2}(s,s')
+ =\frac{e^4e_a^2}{8Q^4}L_e^{\mu\nu}
+ \operatorname{Tr}\!\left[
+ \slsh{k'}(1+\gamma_5\slsh{s'})\gamma_\mu
+ \slsh k(1+\gamma_5\slsh s)\gamma_\nu\right].
+\end{equation}
+\begin{itemize}
+ \item $1/2$: electron spin average.
+ \item $1/2\times1/2$: the two fixed quark-spin projectors.
+ \item Color average and sum: one, as in Section 2.
+\end{itemize}
+
+\subsubsection{Calculate the squared amplitude}
+
+Choose the partonic scattering plane as the $xz$-plane. Its normal is
+\begin{equation}
+ N=(0,0,1,0),\qquad s=\eta N,\quad s'=\eta'N,
+ \qquad \eta,\eta'=\pm1.
+\end{equation}
+All external momenta lie in the scattering plane:
+$N\cdot\ell=N\cdot\ell'=N\cdot k=N\cdot k'=0$.
+
+
+Use $Q^4=\hat t^2$ and $\{\gamma_5,\gamma^\mu\}=0$:
+\begin{align}
+ \overline{|\M|^2}(\eta,\eta')
+ =\frac{e^4e_a^2}{8\hat t^2}L_e^{\mu\nu}
+ \Big[
+ \operatorname{Tr}(\slsh{k'}\gamma_\mu\slsh k\gamma_\nu)
+ \notag
+ +\eta\eta'\operatorname{Tr}
+ (\slsh{k'}\gamma_5\slsh N\gamma_\mu
+  \slsh k\gamma_5\slsh N\gamma_\nu)\Big].
+\end{align}
+\textbf{The first trace: }
+\begin{align}
+ \operatorname{Tr}(\slsh{k'}\gamma_\mu\slsh k\gamma_\nu)
+ &=4\bigl(k'_\mu k_\nu+k'_\nu k_\mu
+          -g_{\mu\nu}\,k'\cdot k\bigr),\\
+ L_e^{\mu\nu}
+ \operatorname{Tr}(\slsh{k'}\gamma_\mu\slsh k\gamma_\nu)
+ &=32\bigl[(\ell'\cdot k')(\ell\cdot k)
+          +(\ell'\cdot k)(\ell\cdot k')\bigr]\notag\\
+ &=8(\hat s^2+\hat u^2).
+\end{align}
+\textbf{The second trace:}
+
+Move the two $\gamma_5$ matrices together. Since $\gamma_5^2=1$, $\slsh N^2=-1$, $N\cdot k=N\cdot k'=0$:
+\begin{align}
+ \operatorname{Tr}(\slsh{k'}\gamma_5\slsh N\gamma_\mu
+                   \slsh k\gamma_5\slsh N\gamma_\nu)
+ &=-\operatorname{Tr}(\slsh{k'}\slsh N\gamma_\mu
+                      \slsh k\slsh N\gamma_\nu),\\
+ \slsh N\gamma_\mu\slsh k\slsh N
+ &=2N_\mu\slsh k\slsh N-\gamma_\mu\slsh k,\\
+ \operatorname{Tr}(\slsh{k'}\slsh k\slsh N\gamma_\nu)
+ &=4(k'\cdot k)N_\nu.
+\end{align}
+Contract with $L_e^{\mu\nu}$. Use
+$L_e^{\mu\nu}N_\mu N_\nu=-2\hat t$ and
+$k'\cdot k=-\hat t/2$:
+\begin{align}
+ &L_e^{\mu\nu}
+ \operatorname{Tr}(\slsh{k'}\gamma_5\slsh N\gamma_\mu
+                   \slsh k\gamma_5\slsh N\gamma_\nu)\notag\\
+ &\quad=8(\hat s^2+\hat u^2)
+       -8(k'\cdot k)L_e^{\mu\nu}N_\mu N_\nu\notag\\
+ &\quad=8(\hat s^2+\hat u^2)-8\hat t^2\notag\\
+ &\quad=-16\hat s\hat u,
+ \qquad(\hat s+\hat t+\hat u=0).
+\end{align}
+\begin{align}
+ \overline{|\M|^2}(\eta,\eta')
+ &=\frac{e^4e_a^2}{8\hat t^2}
+   \bigl[8(\hat s^2+\hat u^2)
+         -16\eta\eta'\hat s\hat u\bigr]\notag\\
+ &=\boxed{\frac{e^4e_a^2}{\hat t^2}
+   \bigl[\hat s^2+\hat u^2-2\eta\eta'\hat s\hat u\bigr]}.
+\end{align}
+Check by summing over the final quark spin:
+\begin{equation}
+ \sum_{\eta'=\pm1}\overline{|\M|^2}(\eta,\eta')
+ =\frac{2e^4e_a^2}{\hat t^2}(\hat s^2+\hat u^2).
+\end{equation}
+\subsubsection{The spin-transfer coefficient}
+Fix the incoming quark spin at $\eta=+1$.
+
+\textbf{Spin preserved:} set $\eta'=+1$, so $\eta\eta'=+1$:
+\begin{equation}
+ \overline{|\M|^2}(+,+)
+ =\frac{e^4e_a^2}{\hat t^2}
+  (\hat s^2+\hat u^2-2\hat s\hat u).
+\end{equation}
+\textbf{Spin reversed:} set $\eta'=-1$, so $\eta\eta'=-1$:
+\begin{equation}
+ \overline{|\M|^2}(+,-)
+ =\frac{e^4e_a^2}{\hat t^2}
+  (\hat s^2+\hat u^2+2\hat s\hat u).
+\end{equation}
+The two rates have the same flux and two-body phase space.
+These factors cancel in their ratio. Subtract and add the squared
+amplitudes:
+\begin{align}
+ \overline{|\M|^2}(+,+)-\overline{|\M|^2}(+,-)
+ &=\frac{e^4e_a^2}{\hat t^2}(-4\hat s\hat u),\\
+ \overline{|\M|^2}(+,+)+\overline{|\M|^2}(+,-)
+ &=\frac{e^4e_a^2}{\hat t^2}
+   2(\hat s^2+\hat u^2).
+\end{align}
+Therefore
+\begin{equation}
+ D_{NN}
+ =\frac{d\hat\sigma(+,+)-d\hat\sigma(+,-)}
+        {d\hat\sigma(+,+)+d\hat\sigma(+,-)}
+ =\frac{-4\hat s\hat u}{2(\hat s^2+\hat u^2)}
+ =\boxed{\frac{-2\hat s\hat u}{\hat s^2+\hat u^2}}.
+\end{equation}
+\begin{equation}
+-1\leq D_{NN}\leq 1.
+\end{equation}
+\begin{itemize}
+    \item $D_{NN}=1$: complete spin preservation.
+    \item $D_{NN}=0$: no net preference for either spin direction.
+    \item $D_{NN}=-1$: complete spin reversal.
+\end{itemize}
+Use $\hat u=-\hat s(1-y)$:
+\begin{equation}
+ \boxed{D_{NN}(y)=\frac{2(1-y)}{1+(1-y)^2}.}
+ \label{eq:dihadron-DNN}
+\end{equation}
+\begin{itemize}
+ \item At $y\to0$, $D_{NN}\to1$; at $y\to1$, $D_{NN}\to0$.
+ \item The unpolarized hard weight is $Y_+=1+(1-y)^2$.
+ The transverse-transfer weight is $Y_+D_{NN}=2(1-y)$.
+\end{itemize}
+Define the normal-spin correlation as the difference of the two rates:
+\begin{align}
+ \frac{d\Delta_T\hat\sigma_a}{dy}
+ &\equiv\frac{d\hat\sigma_a(+,+)}{dy}
+       -\frac{d\hat\sigma_a(+,-)}{dy},\\
+ \frac{d\hat\sigma_a}{dy}
+ &=\frac{d\hat\sigma_a(+,+)}{dy}
+  +\frac{d\hat\sigma_a(+,-)}{dy}.
+\end{align}
+\begin{align}
+ \frac{d\Delta_T\hat\sigma_a}{dy}
+ &=D_{NN}(y)\frac{d\hat\sigma_a}{dy}\notag\\
+ &=\frac{2(1-y)}{1+(1-y)^2}
+   \frac{2\pi\alpha^2e_a^2}{Q^2y}
+   [1+(1-y)^2]\notag\\
+ &=\boxed{\frac{4\pi\alpha^2e_a^2}{Q^2y}(1-y)}.
+\end{align}
+
+
+\subsection{The factorized spin-dependent cross section}
+\subsubsection{Collinear spin projections}
+
+Use the same $\Phi\otimes\mathcal H\otimes\Delta$ structure as in Section 2.
+Select different leading spin components:
+\begin{equation}
+ \begin{array}{c|c|c|c}
+  \text{term}&\Phi\text{ projection}&\Delta\text{ projection}&chiral\\\hline
+  UU&f_1&D_1&even\\
+  UT&h_1&H_1^{\angle}&odd
+ \end{array}
+\end{equation}
+\begin{itemize}
+ \item $a$: flavor 
+ \item Unpolarized parton distribution $f_1^a(x_B)$:  spin-averaged parton density.
+ \item Transversity distribution $h_1^a(x_B)$: For a unit transversely polarized
+ proton, $h_1^a(x_B)$= the difference of quark densities with transverse spins
+ parallel and antiparallel to the proton spin.
+ \item Unpolarized pair fragmentation function $D_1^a(z,c,M_h^2)$: describe $q \to h_1+h_2+X$.
+ \item Interference fragmentation function $H_1^{\angle a}(z,c,M_h^2)$: 
+ It correlates the outgoing quark spin with the pair orientation.
+ \item Use the same scale $\mu\sim Q$ for all functions; suppress it below.
+\end{itemize}
+\begin{equation}
+ \underbrace{h_1}_{\text{chiral odd}}
+ \ \times\ \underbrace{H_1^{\angle}}_{\text{chiral odd}}.
+\end{equation}
+Initial spin $\to$ Quark spin $\to$ Hadron-pair angular distribution  
+
+
+\subsubsection{Fraction matching}
+At tree level, take the incoming quark momentum to be
+$k=\xi\widetilde P$, where
+$\widetilde P=P^+\bar n$ and $\widetilde P^2=0$.
+The virtual photon strikes this quark:
+\begin{equation}
+ \gamma^*(q)+a(\xi\widetilde P)\longrightarrow a(k'),
+ \qquad k'=\xi\widetilde P+q.
+\end{equation}
+\textbf{Put the outgoing quark on shell:} $k'^2=0$. Expand:
+\begin{align}
+ 0=(\xi\widetilde P+q)^2
+ &=\xi^2\widetilde P^2+2\xi\widetilde P\cdot q+q^2\notag\\
+ &=2\xi\widetilde P\cdot q-Q^2\notag\\
+ &\simeq 2\xi P\cdot q-Q^2\notag\\
+ &=Q^2\left(\frac{\xi}{x_B}-1\right).
+\end{align}
+Here $\widetilde P^2=0$, $q^2=-Q^2$, and
+$2P\cdot q=Q^2/x_B$. The replacement
+$\widetilde P\cdot q\simeq P\cdot q$ keeps leading power.
+Therefore $\boxed{\xi=x_B}$ at tree level.
+For the pair use $P_h\simeq\zeta k'$ in the hard kinematics:
+\begin{equation}
+ z=\frac{P\cdot P_h}{P\cdot q}\simeq\zeta
+ \quad\Rightarrow\quad\zeta=z.
+\end{equation}
+
+
+\subsubsection{The two structure functions}
+
+At tree level the fraction convolutions collapse, giving
+\begin{align}
+ F_{UU}&=x_B\sum_{a=q,\bar q}e_a^2 f_1^a(x_B)D_1^a(z,c,M_h^2),\\
+ F_{UT}^{\sin\Phi}
+ &=\boxed{\frac{|\bm R_T|}{M_h}\,x_B
+ \sum_{a=q,\bar q}e_a^2 h_1^a(x_B)H_1^{\angle a}(z,c,M_h^2)}.
+ \label{eq:dihadron-structure}
+\end{align}
+\begin{itemize}
+ \item $UU$: unpolarized electron and proton.
+ \item $UT$: unpolarized electron and transversely polarized proton.
+ \item Keep the \textbf{pair angle} even after integrating the total pair
+ transverse momentum. This is why collinear transversity remains visible.
+\end{itemize}
+
+\subsubsection{The differential cross section}
+Define the differential measure:
+\begin{equation}
+ d\Gamma=dx_B\,dy\,d\psi\,dz\,d\phi_R\,dM_h^2\,dc.
+\end{equation}
+Thus
+\begin{equation}
+ \frac{d\sigma}{d\Gamma}
+ \equiv
+ \frac{d\sigma}
+ {dx_B\,dy\,d\psi\,dz\,d\phi_R\,dM_h^2\,dc}.
+\end{equation}
+\textbf{Find the hard weights.} From the unpolarized hard part in
+Section 2 and the spin-transfer factor above,
+\begin{align}
+ Y_+&=1+(1-y)^2=2-2y+y^2,\\
+ A(y)&=\frac{Y_+}{2}=1-y+\frac{y^2}{2},\\
+ B(y)&=A(y)D_{NN}(y)
+ =\frac{1+(1-y)^2}{2}
+   \frac{2(1-y)}{1+(1-y)^2}
+ =1-y.
+\end{align}
+\begin{equation}
+ \boxed{\frac{d\sigma}{d\Gamma}
+ =\frac{\alpha^2}{x_ByQ^2}
+ \left[A(y)F_{UU}
+ +|\bm S_T|B(y)\sin\Phi\,F_{UT}^{\sin\Phi}\right].}
+ \label{eq:dihadron-cross-section}
+\end{equation}
+\begin{itemize}
+ \item $A(y)F_{UU}$ survives when $|\bm S_T|=0$.
+ \item $|\bm S_T|B(y)\sin\Phi F_{UT}^{\sin\Phi}$ changes sign when
+ the target spin is reversed. Here $B(y)$ is the hard spin-transfer
+ weight; $\sin\Phi$ measures the pair orientation relative to the spin.
+\end{itemize}
+\textbf{Insert the factorized structure functions}
+from Eq.~\eqref{eq:dihadron-structure}. Suppress their arguments:
+\begin{equation}
+ \begin{aligned}
+ \frac{d\sigma}{d\Gamma}
+ =\frac{\alpha^2}{x_ByQ^2}\Bigg[
+ &A(y)x_B\sum_a e_a^2f_1^aD_1^a\\
+ &+|\bm S_T|B(y)\sin\Phi\,
+   x_B\frac{|\bm R_T|}{M_h}
+   \sum_a e_a^2h_1^aH_1^{\angle a}
+ \Bigg].
+ \end{aligned}
+\end{equation}
+Cancel the common $x_B$:
+\begin{equation}
+ \boxed{\begin{aligned}
+ \frac{d\sigma}{d\Gamma}=\frac{\alpha^2}{Q^2y}
+ \Bigg[&A(y)\sum_a e_a^2 f_1^aD_1^a\\
+ &+|\bm S_T|B(y)\sin(\phi_R+\phi_S)
+ \frac{|\bm R_T|}{M_h}\sum_a e_a^2h_1^aH_1^{\angle a}\Bigg].
+ \end{aligned}}
+\end{equation}
+The products $f_1D_1$ and $h_1H_1^{\angle}$ show the
+tree-level collinear factorization.
+\textbf{Keep this angular measure and DiFF normalization together.}
+
+\end{document}
