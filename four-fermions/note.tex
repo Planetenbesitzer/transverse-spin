@@ -353,22 +353,85 @@ For the integration of $\dd\Pi(\hat P_h)$, one simply set $M_h=0$ in equation~\e
 Multiplying the two measures gives the Jacobian for the left-hand
 side of \eqref{eq:sidis-unpolarized-invariant-convolution},
 \begin{equation}
-    \begin{aligned}
-        \dd\Pi(\ell')\,\dd\Pi(\hat P_h)\,\dd M_h
-        &=\frac{ys}{256\pi^4 z_h}\,
-        \dd x_B\,\dd y\,\dd z_h\,\dd\bm P_{hT}^{\,2}\,\dd M_h\,
-        \frac{\dd\psi}{2\pi}\frac{\dd\phi}{2\pi},
-    \end{aligned}
-    \label{eq:sidis-reduced-phase-space}
+    \dd\Pi(\ell')\,\dd\Pi(\hat P_h)\,\dd M_h
+    =\frac{ys}{256\pi^4 z_h}\,
+    \dd x_B\,\dd y\,\dd z_h\,\dd\bm P_{hT}^{\,2}\,\dd M_h\,
+    \frac{\dd\psi}{2\pi}\frac{\dd\phi}{2\pi},
 \end{equation}
 Here we have to choose the reference axis to define two azimuthal angles $\psi$ and $\phi$. For the unpolarized initial state, the $\psi$ dependence should be trivial, therefore we simply integrate and drop it.
 While the $\phi$ dependence is usually chosen in the so called Breit frame, which is defined by boosting the frame so that
 $$
 q = (0,0,0,-Q), \quad P = \frac{Q}{2x_B}(1,0,0,1), \quad \ell^\mu = \frac{Q}{2y}\left(2 - y,\; 2\sqrt{1 - y},\; 0,\; -y\right).
 $$
+Then the phase space is simplified to
+\begin{equation}
+    \dd\Pi_{sidis}=\int_{\psi=0}^{2\pi}
+    \dd\Pi(\ell')\,\dd\Pi(\hat P_h)\,\dd M_h
+    =\frac{ys}{256\pi^4 z_h}\,
+    \dd x_B\,\dd y\,\dd z_h\,\dd\bm P_{hT}^{\,2}\,
+    \frac{\dd\phi}{2\pi}\,\dd M_h.
+    \label{eq:sidis-reduced-phase-space}
+\end{equation}
 
+\subsection{Spin dependent decomposition in nonperturbative functions}
 
+First we introduce the collinear spin-dependent PDFs.
+\begin{equation}
+     \frac{\dd N_{a(\pm\hat{\bm u})/p(S)}}{\dd x}
+    % =\operatorname{Tr}\!\left[\rho(\pm\hat{\bm u}){\cal F}_a\right]
+        =\frac{f_1^a\pm S_Lg_1^a\,u_z\pm h_1^a\,\bm S_T\cdot\bm u_T}{2}.
+    \label{eq:sidis-pdf-density}
+\end{equation}
+This gives the number density of finding a parton $a$ with spin along $\pm\hat{\bm u}$ in a proton with spin $S$. For the unpolarized case, one sum over the number density of finding a parton $a$ with spin along $\hat{\bm u}$ and $-\hat{\bm u}$, which gives the unpolarized PDF $f_1^a$.
+This tells us that the proton's spin is transferred to the parton $a$ with a probability of $g_1^a$ and $h_1^a$, which are the helicity and transversity PDFs, respectively.
 
+For the dihadron fragmentation functions, we have
+\begin{equation}
+\frac{\dd N_{h_1h_2/b(\bm s_b)}}{\dd\xi\,\dd M_h\,(\dd\phi_R/2\pi)}
+    =D_1^b+H_1^{\sphericalangle b}
+                    (s_{b,y}\cos\phi_R-s_{b,x}\sin\phi_R).
+    \label{eq:sidis-diff-density}
+\end{equation}
+In this decomposition, the parton $b$'s spin is coupled with the dihadron's azimuthal($\phi_R$) distribution (orbital angular moemtum).
+
+Note that the spin components are encoded in the halicity basis, and can be extracted by tracing with Dirac matrices.
+One can take a leap to get the spin-dependent factorization formula. Although a more natural way is to define from the operator level and leaving the spinor indices open.\footnote{See Zhite Yu,
+\href{https://arxiv.org/pdf/2308.13080v1\#page=86}{arXiv:2308.13080, Sec.~2.7.1},
+Eqs.~(2.121)--(2.126), for the quark correlator with open Dirac indices
+and its leading-twist projections. For the dihadron correlator and the
+helicity-index contraction in SIDIS, see Barone, Drago and Ratcliffe,
+\href{https://arxiv.org/pdf/hep-ph/0104283v3\#page=102}{hep-ph/0104283, Sec.~6.8},
+Eqs.~(6.8.10)--(6.8.15) and
+\href{https://arxiv.org/pdf/hep-ph/0104283v3\#page=106}{(6.8.25)}.}
+Here we just give a quick conclusion.
+\begin{multline}
+    \frac{\dd\sigma}{\dd\Pi_{sidis}}
+    \overset{\rm L.P.}{=}\frac{1}{2s}\sum_{a,b=q,\bar q}
+        \int_0^1\frac{\dd x}{x}\int_0^1\frac{\dd\xi}{\xi^2}\\
+    {}\times {\cal F}_{a,\,\lambda_a\lambda'_a}(x,S;\mu)\,
+        {\cal H}_{ba,\,\lambda_a\lambda_a';\lambda_b\lambda_b'}(xP,P_h/\xi)\,
+        {\cal D}_{b,\,\lambda_b'\lambda_b}(\xi,M_h,\phi_R;\mu),
+    \label{eq:sidis-spin-conv}
+\end{multline}
+with the definition
+\begin{equation}
+    \frac{\dd N_{a(\pm\hat{\bm u})/p(S)}}{\dd x}
+    =\operatorname{Tr}\!\left[\rho(\pm\hat{\bm u}){\cal F}_a\right].\qquad
+    \frac{\dd N_{h_1h_2/b(\bm s_b)}}{\dd\xi\,\dd M_h\,(\dd\phi_R/2\pi)}
+         =\operatorname{Tr}\!\left[\rho(\bm s_b){\cal D}_b\right],
+\end{equation}
+and
+\begin{align}
+    {\cal F}_a(x,S;\mu)
+        &=\frac{1}{2}\left[f_1^a(x;\mu)\,\mathbf 1
+            +S_Lg_1^a(x;\mu)\,\sigma_z
+            +h_1^a(x;\mu)\,\bm S_T\cdot\bm\sigma_T\right],\\
+        {\cal D}_b(\xi,M_h,\phi_R;\mu)
+        &=D_1^b(\xi,M_h;\mu)\,\mathbf 1
+            +H_1^{\sphericalangle b}(\xi,M_h;\mu)\,\hat{\bm n}_R\cdot\bm\sigma.
+\end{align}
+
+\subsection{LO QCD result}
 
 \clearpage
 \section{Spin-dependent dihadron SIDIS}
